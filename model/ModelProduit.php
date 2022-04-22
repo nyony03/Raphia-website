@@ -31,7 +31,7 @@ class ModelProduit
         return $tabProduits;
     }
 
-    public static function getProduitByCath($categorieProduit){
+    public static function getProduitByCat($categorieProduit){
         $sql = "SELECT * FROM Raphia_Produit WHERE idCategorie=:categorie";
 
         $sql_prep = Model::getPdo()->prepare($sql);
