@@ -6,20 +6,6 @@ class ModelProduit
     private $prixProduit;
     private $categorieProduit;
 
-    public function __construct($idProduit = NULL, $nomProduit = NULL,
-                                $prixProduit = NULL, $categorieProduit = NULL)
-    {
-
-        if (!is_null($idProduit) && !is_null($nomProduit) &&
-            !is_null($prixProduit) && !is_null($categorieProduit)) {
-            $this->$idProduit = $idProduit;
-            $this->$nomProduit = $nomProduit;
-            $this->$prixProduit = $prixProduit;
-            $this->$categorieProduit = $categorieProduit;
-        }
-
-
-    }
 
     public static function getAllProduit(){
 
@@ -48,5 +34,29 @@ class ModelProduit
             return false;
         return $tab_pdt[0];
 
+    }
+
+    public static function getProduitByTag($TagProduit){
+        $sql = "SELECT * FROM Raphia_Produit WHERE idCategorie=:tag";
+
+        $sql_prep = Model::getPdo()->prepare($sql);
+
+        $produit = array(
+            'tag' => $TagProduit,
+        );
+
+        $sql_prep->execute($produit);
+        $sql_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelProduit');
+        $tab_pdt = $sql_prep->fetchAll();
+
+        if (empty($tab_pdt))
+            return false;
+        return $tab_pdt[0];
+
+    }
+
+    public function afficher()
+    {
+        echo "<div>Le Produit  {$this ->nomProduit} de prix {$this->prixProduit} et de categorie {$this -> categorieProduit} </div>";
     }
 }
