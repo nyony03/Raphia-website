@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="19c5b36a-ccb6-446f-b15c-e7bf87d9df9f" name="https://webinfo.iutmontp.univ-montp2.fr/~rakotondran/" url="https://webinfo.iutmontp.univ-montp2.fr/~rakotondran//">
+        <fileTransfer rootFolder="/home/as/rakotondran" accessType="SFTP" host="ftpinfo.iutmontp.univ-montp2.fr" port="22" sshConfigId="68faca30-9d9c-461b-849c-f8360521164d" sshConfig="rakotondran@162.38.222.93:6666">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

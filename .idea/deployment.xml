@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="https://webinfo.iutmontp.univ-montp2.fr/~rakotondran/" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="https://webinfo.iutmontp.univ-montp2.fr/~rakotondran/">
+        <serverdata>
+          <mappings>
+            <mapping deploy="index_html/raphia" local="$PROJECT_DIR$" web="/https://webinfo.iutmontp.univ-montp2.fr/~rakotondran/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
