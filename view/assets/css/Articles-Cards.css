@@ -1,0 +1,9 @@
+.fit-cover {
+  object-fit: cover;
+}
+
+#promo {
+  padding: 120px;
+  text-align: center;
+}
+
