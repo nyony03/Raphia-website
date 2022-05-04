@@ -7,6 +7,7 @@
   font-size: var(--bs-icon-size);
   width: calc(var(--bs-icon-size) * 2);
   height: calc(var(--bs-icon-size) * 2);
+  color: var(--bs-primary);
 }
 
 .bs-icon-xs {
@@ -31,7 +32,18 @@
   --bs-icon-size: 2.5rem;
 }
 
+.bs-icon.bs-icon-primary {
+  color: var(--bs-white);
+  background: var(--bs-primary);
+}
+
+.bs-icon.bs-icon-primary-light {
+  color: var(--bs-primary);
+  background: rgba(var(--bs-primary-rgb), .2);
+}
+
 .bs-icon.bs-icon-semi-white {
+  color: var(--bs-primary);
   background: rgba(255, 255, 255, .5);
 }
 
