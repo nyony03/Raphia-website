@@ -14,7 +14,7 @@
 <body>
 <nav class="navbar navbar-light navbar-expand-md" style="background: #ebd9d5;">
     <div class="container-fluid">
-        <picture><img src="../assets/img/logo.png" width="50" height="50"></picture><a class="navbar-brand" href="#" style="color: #a75b5b;"><strong><em>Raphia</em></strong></a>
+        <img src="../assets/img/logo.png" width="50" height="50"><a class="navbar-brand" href="#" style="color: #a75b5b;"><strong><em>Raphia</em></strong></a>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link active d-md-flex justify-content-md-start" href="#"></a></li>
@@ -24,7 +24,7 @@
         </div><button class="btn btn-primary" type="button" style="background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;margin: 10px;">Connexion</button><button class="btn btn-primary" type="button" style="background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;">Panier</button>
     </div>
 </nav>
-<div id="promo" style="background: url('../assets/img/photo-accueil.png') left / cover no-repeat;";">
+<div id="promo" style="background: url('../assets/img/background.jpeg') left / cover no-repeat;";">
     <div class="container" style="background: rgba(235,217,213,0.78);">
         <h1 style="font-family: 'Abhaya Libre', serif;">Bienvenue sur Raphia</h1>
         <p style="font-style: italic;font-family: 'Abhaya Libre', serif;font-size: 20px;">Découvrez l'art de toute une île</p>

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="19c5b36a-ccb6-446f-b15c-e7bf87d9df9f" name="https://webinfo.iutmontp.univ-montp2.fr/~rakotondran/" url="https://webinfo.iutmontp.univ-montp2.fr/~rakotondran/">
-        <fileTransfer rootFolder="/home/as/rakotondran/" accessType="SFTP" host="ftpinfo.iutmontp.univ-montp2.fr" port="22" sshConfigId="68faca30-9d9c-461b-849c-f8360521164d" sshConfig="rakotondran@ftpinfo.iutmontp.univ-montp2.fr:22 password">
+      <webServer id="cd429a2b-3d41-47e6-b927-8e1bebd392e3" name="webinfo" url="https://webinfo.iutmontp.univ-montp2.fr/~tabbabo/">
+        <fileTransfer rootFolder="/home/as/tabbabo/" accessType="SFTP" host="ftpinfo.iutmontp.univ-montp2.fr" port="22" sshConfigId="be025f70-4723-4a4b-ae89-884324231e0b" sshConfig="tabbabo@ftpinfo.iutmontp.univ-montp2.fr:22 password">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
