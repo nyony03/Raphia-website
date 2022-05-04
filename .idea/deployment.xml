@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="webinfo" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" autoUpload="Always" serverName="webnyony" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="webinfo">
+      <paths name="webnyony">
         <serverdata>
           <mappings>
-            <mapping deploy="public_html/raphia" local="$PROJECT_DIR$" web="https://webinfo.iutmontp.univ-montp2.fr/~tabbabo/" />
+            <mapping deploy="public_html/raphia" local="$PROJECT_DIR$" web="https://webinfo.iutmontp.univ-montp2.fr/~rakotondran/" />
           </mappings>
         </serverdata>
       </paths>
