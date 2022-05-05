@@ -1,3 +1,4 @@
+
 <?php
 require_once File::build_path(array("model","ModelProduit.php")); // chargement du modèle
 class ControllerProduit

@@ -6,7 +6,7 @@ $action = $_GET["action"];
 
 if (!isset($action)){
     echo "Bienvenue sur mon super site de nap";
-
+    //à renvoyer vers la page erreur 
 }
 else {
 // Appel de la méthode statique $action de ControllerVoiture
