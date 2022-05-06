@@ -2,7 +2,7 @@
 <project version="4">
   <component name="SshConfigs">
     <configs>
-      <sshConfig authType="PASSWORD" host="ftpinfo.iutmontp.univ-montp2.fr" id="68faca30-9d9c-461b-849c-f8360521164d" port="22" nameFormat="DESCRIPTIVE" username="tabbabo" useOpenSSHConfig="true" />
+      <sshConfig authType="PASSWORD" host="ftpinfo.iutmontp.univ-montp2.fr" id="e8d45293-1e52-45cd-9128-ed7842258fcb" port="22" nameFormat="DESCRIPTIVE" username="tabbabo" useOpenSSHConfig="true" />
     </configs>
   </component>
 </project>

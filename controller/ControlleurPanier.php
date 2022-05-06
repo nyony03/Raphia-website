@@ -12,7 +12,6 @@ class ControlleurPanier
 
         $_SESSION['nom'] = "nadal";
         $_SESSION['panier'] = [15];
-        var_dump($_SESSION);
 
         //regarder si la session utilisateur contien un panier ou pas sinon on en lui creer un et on lui dit qu'il est vide
         //ou bien si son panier est vide
@@ -24,6 +23,10 @@ class ControlleurPanier
             //l'utilisateur est connecté
             if (isset($_SESSION['nom'])) {
                 //sa session contient un panier donc à voir si il est vide
+
+
+                var_dump(array_merge($_SESSION['panier'], ModelPanier::getAllProduitDansPanierByUser(31)));
+
                 $_SESSION['panier']->append(ModelPanier::getAllProduitDansPanierByUser(31));//idUser recuperé à la connexion
 
                 $panier = $_SESSION['panier'];

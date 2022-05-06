@@ -1,8 +1,7 @@
-<?php
-session_start();
 
-?>
 <?php
+
+require_once File::build_path(array("model","Model.php"));
 
 class ModelPanier
 {
@@ -18,7 +17,7 @@ class ModelPanier
                 FROM Raphia_Produit p
                 JOIN Raphia_lignePanier lp ON lp.idProduit = p.idProduit
                 JOIN Raphia_Panier pan ON pan.idPanier = lp.idPanier
-                WHERE idUtilisateur=:id_utilisateur";
+                WHERE idUser=:id_utilisateur";
         $sql_prepare = Model::getPdo()->prepare($sql);
 
         $values = array(

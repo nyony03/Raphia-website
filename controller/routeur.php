@@ -1,6 +1,5 @@
 <?php
-
-require_once File::build_path(array("/view/panierVide","panierVide.php"));
+require_once File::build_path(array("controller","ControlleurPanier.php"));
 // On recupère l'action passée dans l'URL
 $action = $_GET["action"];
 
