@@ -33,12 +33,9 @@
             <div class="container-fluid"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-2">
                     <ul class="navbar-nav mx-auto">
-                        <?php
-                        foreach ($tab_pdt as $v){
-                            echo "<li class='nav-item'><a class='nav-link active' href='index.php?action=readCategorie&nomCategorie={$v->getnomCategorie()}'>". $v->getnomCategorie() ." style='color: #a75b5b;font-weight: bold;'></a></li>";
-                        }
-
-                        ?>
+                        <li class="nav-item"><a class="nav-link active" href="#" style="color: #a75b5b;font-weight: bold;">Décoration</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" style="color: #a75b5b;font-weight: bold;">Plage</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" style="color: #a75b5b;font-weight: bold;">Mode</a></li>
                     </ul>
                 </div>
             </div>

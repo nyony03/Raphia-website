@@ -16,19 +16,18 @@ class ModelProduit
         $pdo = Model::getPdo();
         $rep = $pdo->query("SELECT * FROM Raphia_Produit");
         $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelProduit'); //appel à partir d'une classe
-        $tabVoiture = $rep->fetchAll();
-        return $tabVoiture;
+        $tabProduit = $rep->fetchAll();
+        return $tabProduit;
     }
 
-    public static function getProduitByCat($categorieProduit){
-        $sql = "SELECT * FROM Raphia_Produit WHERE idCategorie=:categorie";
-
+    public static function getProduitByCat($nomCategorie){
+        $sql = "SELECT * FROM Raphia_Produit
+                JOIN Raphia_Categorie ON Raphia_Produit.idCategorie = Raphia_Categorie.idCategorie 
+                WHERE nomCategorie=:nomCategorie";
         $sql_prep = Model::getPdo()->prepare($sql);
-
         $produit = array(
-            'categorie' => $categorieProduit,
+            'nomCategorie' => $nomCategorie,
         );
-
         $sql_prep->execute($produit);
         $sql_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelProduit');
         $tab_pdt = $sql_prep->fetchAll();
@@ -60,19 +59,21 @@ class ModelProduit
 
     public function afficher()
     {
-        echo "<div class='row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3'>";
-               echo "<div class='col'>";
-                    echo "<div class='card'><img class='card-img-top w-100 d-block fit-cover' style='height: 200px;' src='../raphia/view/assets/img/drapPlage.png'>";
-                        echo "<div class='card-body p-4'>";
-                            echo "<h4 class='card-title'>{$this ->nomProduit}</h4>";
-                            echo "<p class='card-text'>{$this ->description}</p>";
-                            echo "<p class='card-text'>{$this ->prixProduit}</p>";
-                        echo "</div>
-                    </div>
-                </div>";
+        echo "<div class='col'>";
+        echo "<div class='card'><img class='card-img-top w-100 d-block fit-cover' style='height: 200px;' src='{$this->image}'>";
+            echo "<div class='card-body p-4'>";
+                echo "<h4 class='card-title'>{$this->nomProduit}</h4>";
+                echo "<p class='card-text'>{$this->description}</p>";
+                echo "<p class='card-text'>{$this->prixProduit} €</p>";
+                echo "<button class='btn btn-primary' type='button' style='background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;'>AJOUT AU PANIER</button>";
+            echo "</div>
+            </div>
+        </div>";
+
     }
 
-    /**
+
+/**
      * @return mixed
      */
     public function getIdPoduit()
