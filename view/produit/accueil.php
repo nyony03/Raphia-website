@@ -34,8 +34,8 @@
                 <div class="collapse navbar-collapse" id="navcol-2">
                     <ul class="navbar-nav mx-auto">
                         <?php
-                        foreach ($tab_pdt as $v){
-                            echo "<li class='nav-item'><a class='nav-link active' href='index.php?action=readCategorie&nomCategorie={$v->getnomCategorie()}'>". $v->getnomCategorie() ." style='color: #a75b5b;font-weight: bold;'></a></li>";
+                        foreach ($tab_cat as $v){
+                            echo "<li class='nav-item'><a class='nav-link active' href='index.php?action=readCategorie&nomCategorie={$v->getNomCategorie()}' style='color: #a75b5b;font-weight: bold'>{$v->getNomCategorie()}</a></li>";
                         }
 
                         ?>
@@ -51,7 +51,7 @@
         <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
             <?php
             foreach ($tab_v as $v){
-                echo $v-> afficher();
+                echo $v->afficher();
             }
             ?>
         </div>

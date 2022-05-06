@@ -1,6 +1,7 @@
 <?php
 require_once File::build_path(array("model","Model.php"));
 
+
 class ModelProduit
 {
     private $idPoduit;
@@ -18,24 +19,6 @@ class ModelProduit
         $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelProduit'); //appel à partir d'une classe
         $tabProduit = $rep->fetchAll();
         return $tabProduit;
-    }
-
-    public static function getProduitByCat($nomCategorie){
-        $sql = "SELECT * FROM Raphia_Produit
-                JOIN Raphia_Categorie ON Raphia_Produit.idCategorie = Raphia_Categorie.idCategorie 
-                WHERE nomCategorie=:nomCategorie";
-        $sql_prep = Model::getPdo()->prepare($sql);
-        $produit = array(
-            'nomCategorie' => $nomCategorie,
-        );
-        $sql_prep->execute($produit);
-        $sql_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelProduit');
-        $tab_pdt = $sql_prep->fetchAll();
-
-        if (empty($tab_pdt))
-            return false;
-        return $tab_pdt[0];
-
     }
 
     public static function getProduitByTag($TagProduit){
@@ -56,6 +39,24 @@ class ModelProduit
         return $tab_pdt[0];
 
     }
+
+    public static function getProduitByCat($nomCategorie){
+        $sql = "SELECT * FROM Raphia_Produit
+                JOIN Raphia_Categorie ON Raphia_Produit.idCategorie = Raphia_Categorie.idCategorie 
+                WHERE nomCategorie=:nomCategorie";
+        $sql_prep = Model::getPdo()->prepare($sql);
+        $produit = array(
+            'nomCategorie' => $nomCategorie,
+        );
+        $sql_prep->execute($produit);
+        $sql_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelProduit');
+        $tab_pdt = $sql_prep->fetchAll();
+
+        if (empty($tab_pdt))
+            return false;
+        return $tab_pdt;
+    }
+
 
     public function afficher()
     {

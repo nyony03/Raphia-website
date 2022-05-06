@@ -33,9 +33,11 @@
             <div class="container-fluid"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-2">
                     <ul class="navbar-nav mx-auto">
-                        <li class="nav-item"><a class="nav-link active" href="#" style="color: #a75b5b;font-weight: bold;">Décoration</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" style="color: #a75b5b;font-weight: bold;">Plage</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" style="color: #a75b5b;font-weight: bold;">Mode</a></li>
+                        <?php
+                        foreach ($tab_cat as $v){
+                            echo "<li class='nav-item'><a class='nav-link active' href='index.php?action=readCategorie&nomCategorie={$v->getNomCategorie()}' style='color: #a75b5b;font-weight: bold'>{$v->getNomCategorie()}</a></li>";
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -47,8 +49,8 @@
     <div class="container py-4 py-xl-5">
         <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
             <?php
-            foreach ($tab_v as $v){
-                echo $v-> afficher();
+            foreach ($tab_detail as $v){
+                echo $v->afficher();
             }
             ?>
         </div>
