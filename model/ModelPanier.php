@@ -1,7 +1,13 @@
 <?php
+session_start();
+
+?>
+<?php
 
 class ModelPanier
 {
+
+
     private $produit;
     private $quantité;
     private $total;

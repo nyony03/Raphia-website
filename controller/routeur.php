@@ -1,6 +1,6 @@
 <?php
 
-require_once File::build_path(array("./view/produit","accueil.php"));
+require_once File::build_path(array("/view/panierVide","panierVide.php"));
 // On recupère l'action passée dans l'URL
 $action = $_GET["action"];
 
@@ -10,5 +10,5 @@ if (!isset($action)){
 }
 else {
 // Appel de la méthode statique $action de ControllerVoiture
-    ControllerProduit::$action();
+    ControlleurPanier::readPanier();
 }
