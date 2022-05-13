@@ -1,6 +1,7 @@
 <?php
+require_once File::build_path(array("model","Model.php"));
 
-class ModelUtilsateur
+class ModelUtilisateur
 {
     private $idUser;
     private $nom;
@@ -59,7 +60,7 @@ class ModelUtilsateur
          $requete->setFetchMode(PDO::FETCH_CLASS,'ModeUtilisateur');
          $tab_user = $requete->fetchAll();
 
-         if(empt($tab_user))
+         if(empty($tab_user))
              return false;
          return $tab_user[0];
     }
@@ -75,5 +76,25 @@ class ModelUtilsateur
             "mail" => $this->mail,
         );
         $requete->execute($values);
+    }
+
+    public static function authentification($mail, $mdp){
+        $sql = "SELECT * FROM Raphia_utilisateur WHERE mail =:mail AND mdp =:mdp";
+        $req_prep = Model::getPdo()->prepare($sql);
+        $value = array(
+            "mail" => $mail,
+            "mdp" => $mdp,
+        );
+        $req_prep->execute($value);
+        $req_prep->setFetchMode(PDO::FETCH_ASSOC);
+        $tabUser = $req_prep->fetchAll();
+        if(count($tabUser)>0){
+            //Pour récupérer la session
+            $_SESSION['nom'] = $tabUser[0]['nom'];
+            $_SESSION['mail'] = $tabUser[0]['mail'];
+
+        }else{
+            echo "ERREUR LOGIN";
+        }
     }
 }

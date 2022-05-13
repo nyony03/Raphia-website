@@ -26,4 +26,6 @@ class ControllerProduit {
 
         // redirection, prendre categori pr redirection mm page
     }
+
+
 }
