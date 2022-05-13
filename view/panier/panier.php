@@ -1,5 +1,4 @@
 <?php
-session_start();
 $_SESSION['nom'] = 'Obada';
 $_SESSION['idUser'] = 31;
 ?>

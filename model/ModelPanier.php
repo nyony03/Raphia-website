@@ -7,13 +7,15 @@ class ModelPanier
 {
 
 
-    private $produit;
+    private $nomProduit;
     private $quantité;
+    private $prixProduit;
+    private $image;
     private $total;
 
     public static function getAllProduitDansPanierByUser($idUtilisateur){
 
-        $sql = "SELECT nomProduit, qte, prixProduit
+        $sql = "SELECT nomProduit, qte, prixProduit, image
                 FROM Raphia_Produit p
                 JOIN Raphia_lignePanier lp ON lp.idProduit = p.idProduit
                 JOIN Raphia_Panier pan ON pan.idPanier = lp.idPanier
@@ -24,10 +26,12 @@ class ModelPanier
             "id_utilisateur" => $idUtilisateur,
         );
 
+
+
         $sql_prepare->execute($values);
 
         $sql_prepare->setFetchMode(PDO::FETCH_CLASS,'ModelPanier');
-        $tabLignesPanier = $sql_prepare->fetchAll();
+        $tabLignesPanier = $sql_prepare->fetch(PDO::FETCH_OBJ);
 
         if(empty($tabLignesPanier)){
             return false;
