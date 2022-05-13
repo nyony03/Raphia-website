@@ -8,10 +8,11 @@ class ControlleurPanier
 
     public static function readPanier()
     {
-        echo '<p>Fonction rentre dans read Panier</p>';
+        //echo '<p>Fonction rentre dans read Panier</p>';
 
         $_SESSION['nom'] = "nadal";
         $_SESSION['panier'] = [15];
+        var_dump($_SESSION);
 
         //regarder si la session utilisateur contien un panier ou pas sinon on en lui creer un et on lui dit qu'il est vide
         //ou bien si son panier est vide
