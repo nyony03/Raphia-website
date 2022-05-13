@@ -40,6 +40,29 @@ class ModelProduit
 
     }
 
+    public static function createPanier($idProduit){
+        $sql = "INSERT INTO Raphia_lignePanier (idProduit,qte) VALUES (:idProduit, :qte)";
+        $sql_prep = Model::getPDO()->prepare($sql);
+        $values = array(
+            "idProduit" => $idProduit,
+            "qte" => 1,
+        );
+        $sql_prep->execute($values);
+        $sql_prep = Model::getPDO()->query("SELECT LAST_INSERT_ID()");
+        $sql_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelProduit');
+        return $sql_prep->fetchColumn();
+    }
+
+    public function ajouterQuantiteProduit($idPanier){
+        $sql = "UPDATE Raphia_lignePanier SET qte = qte + 1 WHERE idPanier =: idPanier AND idProduit =:idProduit";
+        $sql_prep = Model::getPDO()->prepare($sql);
+        $values = array(
+            "idPanier" => $idPanier,
+            "idProduit" => $this->idPoduit,
+        );
+        $sql_prep->execute($values);
+    }
+
     public static function getProduitByCat($nomCategorie){
         $sql = "SELECT * FROM Raphia_Produit
                 JOIN Raphia_Categorie ON Raphia_Produit.idCategorie = Raphia_Categorie.idCategorie 
@@ -66,7 +89,7 @@ class ModelProduit
                 echo "<h4 class='card-title'>{$this->nomProduit}</h4>";
                 echo "<p class='card-text'>{$this->description}</p>";
                 echo "<p class='card-text'>{$this->prixProduit} €</p>";
-                echo "<button class='btn btn-primary' type='button' style='background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;'>AJOUT AU PANIER</button>";
+                echo "<button class='btn btn-primary' type='button' style='background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;' onclick='location.href=\"index.php?action=ajoutProduitPanierSession&idProduit={$this->idProduit}\"'>AJOUT AU PANIER</button>";
             echo "</div>
             </div>
         </div>";

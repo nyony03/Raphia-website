@@ -16,4 +16,14 @@ class ControllerProduit {
         require ('view/Produit/detail.php');  //"redirige" vers la vue detail
     }
 
+    public static function ajoutProduitPanierSession(){
+        $idPanier = $_SESSION['idPanier'] ?? null;
+        if (!$idPanier) {
+            $_SESSION['idPanier'] = ModelProduit::createPanier($_GET['idProduit']);
+        } else {
+            ModelProduit::ajouterQuantiteProduit($idPanier);
+        }
+
+        // redirection, prendre categori pr redirection mm page
+    }
 }
