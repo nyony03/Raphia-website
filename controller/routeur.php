@@ -8,6 +8,6 @@ $action = $_GET["action"] ?? 'readAll';
 // Appel de la méthode statique $action de ControllerVoiture
 if ($action == 'readAll' ||$action == 'readCategorie'||$action == 'ajoutProduitPanierSession')
     ControllerProduit::$action();
-if ($action == 'readConnexion' ||$action == 'authentification')
+if ($action == 'readConnexion' ||$action == 'authentification' || $action == 'createAccount'|| $action == 'deconnexion'|| $action == 'creation')
     ControllerUtilisateur::$action();
 
