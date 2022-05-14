@@ -9,5 +9,11 @@ if (!isset($action)){
 }
 else {
 // Appel de la méthode statique $action de ControllerVoiture
-    ControlleurPanier::readPanier();
+    if ($action == 'readPanier') {
+        ControlleurPanier::readPanier();
+    }
+    if ($action == 'addQuantity( J AI BESOIN DE PASSER DES PARAM LA !! )'){
+        ControlleurPanier::addQuantity();
+
+    }
 }

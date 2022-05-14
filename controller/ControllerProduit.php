@@ -5,6 +5,6 @@ class ControllerProduit
 {
     public static function readAllproduit() {
         $tab_v = ModelProduit::getAllProduit();     //appel au modèle pour gerer la BD
-        require ('view/produit/accueil.php');  //"redirige" vers la vue
+        require('view/Produit/accueil.php');  //"redirige" vers la vue
     }
 }

@@ -1,21 +1,68 @@
 
 <?php
+require_once File::build_path(array("model","Model.php")); // chargement du modèle
+require_once File::build_path(array("model","ModelPanier.php")); // chargement du modèle
 
-require_once File::build_path(array("model","Model.php"));
+
 
 class ModelPanier
 {
 
 
     private $nomProduit;
-    private $quantité;
+    private $qte;
     private $prixProduit;
     private $image;
-    private $total;
+    private $idPanier;
+    private $idProduit;
+
+
+    public function getNomProduit()
+    {
+        return $this->nomProduit;
+    }
+
+
+    public function getQte()
+    {
+        return $this->qte;
+    }
+
+
+    public function getPrixProduit()
+    {
+        return $this->prixProduit;
+    }
+
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+
+    public function getIdPanier()
+    {
+        return $this->idPanier;
+    }
+
+
+    public function getIdProduit()
+    {
+        return $this->idProduit;
+    }
+
+
+
+
+
 
     public static function getAllProduitDansPanierByUser($idUtilisateur){
+        require_once File::build_path(array("model","Model.php")); // chargement du modèle
+        require_once File::build_path(array("model","ModelPanier.php")); // chargement du modèle
 
-        $sql = "SELECT nomProduit, qte, prixProduit, image
+
+        $sql = "SELECT nomProduit, qte, prixProduit, image, p.idProduit, pan.idPanier
                 FROM Raphia_Produit p
                 JOIN Raphia_lignePanier lp ON lp.idProduit = p.idProduit
                 JOIN Raphia_Panier pan ON pan.idPanier = lp.idPanier
@@ -31,13 +78,43 @@ class ModelPanier
         $sql_prepare->execute($values);
 
         $sql_prepare->setFetchMode(PDO::FETCH_CLASS,'ModelPanier');
-        $tabLignesPanier = $sql_prepare->fetch(PDO::FETCH_OBJ);
+        $tabObjetLignesPanier = $sql_prepare->fetchAll();
 
-        if(empty($tabLignesPanier)){
+
+
+
+        if(empty($tabObjetLignesPanier)){
             return false;
         }
         else {
-            return $tabLignesPanier;
+            $tablignePanier = [];
+            $tablignePanier['nomProduit'] =  $tabObjetLignesPanier[0]->getNomProduit();
+            $tablignePanier['prixProduit'] = $tabObjetLignesPanier[0] -> getPrixProduit();
+            $tablignePanier['qte'] =  $tabObjetLignesPanier[0]->getQte();
+            $tablignePanier['image'] = $tabObjetLignesPanier[0]->getImage();
+            $tablignePanier['idPanier'] = $tabObjetLignesPanier[0]->getIdPanier();
+            $tablignePanier['idProduit'] = $tabObjetLignesPanier[0]->getIdProduit();
+            return $tablignePanier;
+
         }
+    }
+
+    public static function addInLignePanier($idProduit, $idPanier){
+        echo "<p> nous somme dans la addINligne panier";
+
+        $sql = 'UPDATE Raphia_lignePanier
+                SET qte = qte+1
+                WHERE idPanier =:id_Panier AND idProduit =:id_Produit';
+        $sql_prepare = Model::getPdo()->prepare($sql);
+
+        $values = array(
+            "id_Produit" => $idProduit,
+            "id_Panier" => $idPanier,
+        );
+
+        $sql_prepare->exeute($values);
+
+
+
     }
 }

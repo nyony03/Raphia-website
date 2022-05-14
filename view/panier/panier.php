@@ -11,7 +11,7 @@ $_SESSION['idUser'] = 31;
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>panier</title>
     <link rel="stylesheet" href="../raphiaphp/view/panier/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./raphiaphp/view/panier/assets/css/styles.css">
+    <link rel="stylesheet" href="../raphiaphp/view/panier/assets/css/styles.css">
 </head>
 
 <body>
@@ -49,22 +49,40 @@ $_SESSION['idUser'] = 31;
     </div>
     <?php
     //for each dans le panier de la session pour recuperer les articles
-    echo'<div class="d-flex flex-row flex-shrink-1 justify-content-between" style="padding-bottom: 12px;">';
-    echo '<div class="d-flex flex-row flex-shrink-1 align-content-center"><img src="'.$lienArecupDansLaSession.'" style="width: 120px;height: 120px;">';
-    echo '            <div class="d-flex flex-column flex-shrink-1" style="padding-left: 50px;">';
-    echo '            <div class="d-flex flex-column flex-shrink-1" style="padding-left: 50px;">';
-    echo '            <div class="d-flex flex-column flex-shrink-1" style="padding-left: 50px;">';
-    echo '                <p style="font-size: 18px;font-weight: bold;letter-spacing: 1px;color: rgb(0,0,0);">'.$NomProduit.'&nbsp;</p>';
-    echo '                <div class="d-flex flex-row">';
-    echo '                <div class="d-flex flex-row">';
-    echo '                    <p style="font-size: 18px;letter-spacing: 1px;font-style: italic;color: rgb(0,0,0);">'.$Quantité.'&nbsp; :</p>;';
-    echo '                    <p style="font-size: 18px;letter-spacing: 1px;padding-left: 15px;">int&nbsp;</p>';
-    echo '                </div>';
-    echo '                <div class="d-flex flex-row justify-content-evenly"><button class="btn btn-primary" type="button" style="font-size: 16px;font-weight: bold;background: rgb(211,110,112);border-color: rgb(211,110,112);">-</button><button class="btn btn-primary" type="button" style="font-weight: bold;background: rgb(211,110,112);border-color: rgb(211,110,112);">+</button></div>';
-    echo '            </div>';
-    echo '        </div>';
-    echo '        <p class="d-flex flex-shrink-1 justify-content-xl-center" style="padding-right: 20px;font-size: 18px;letter-spacing: 1px;color: rgb(0,0,0);"><strong>Total</strong></p>';
-    echo '    </div>';
+    $compteurArray = 0;
+    foreach($_SESSION['panier'] as $lignePanier => $article ){
+        //echo '<div class="d-flex flex-row flex-shrink-1 align-content-center"><img src="'.$article['image'].'" style="width: 120px;height: 120px;">';
+        var_dump($article);
+
+        echo'
+        <div class="d-flex flex-row flex-shrink-1 justify-content-between" style="padding-bottom: 12px;">
+        <div class="d-flex flex-row flex-shrink-1 align-content-center"><img src="../raphiaphp/view/Produit/assets/img/setTable.png" style="width: 120px;height: 120px;">
+            <div class="d-flex flex-column flex-shrink-1" style="padding-left: 50px;">
+                <p style="font-size: 18px;font-weight: bold;letter-spacing: 1px;color: rgb(0,0,0);">'.$article['nomProduit'].'&nbsp;</p>
+                <div class="d-flex flex-row">
+                    <p style="font-size: 18px;letter-spacing: 1px;font-style: italic;color: rgb(0,0,0);">Quantité&nbsp; :</p>
+                    <p style="font-size: 18px;letter-spacing: 1px;padding-left: 15px;">'.$article['qte'].'&nbsp;</p>
+                </div>
+                <div class="d-flex flex-row justify-content-evenly"><button class="btn btn-primary" type="button" style="font-size: 16px;font-weight: bold;background: rgb(211,110,112);border-color: rgb(211,110,112);">-</button><button onclick="location.href=\'index.php?action=addQuantity('.$article['idProduit'].','.$article['idPanier'].','..')\'" class="btn btn-primary" type="button" style="font-weight: bold;background: rgb(211,110,112);border-color: rgb(211,110,112);">+</button></div>
+            </div>
+        </div>
+        <p class="d-flex flex-shrink-1 justify-content-xl-center" style="padding-right: 20px;font-size: 18px;letter-spacing: 1px;color: rgb(0,0,0);"><strong>Total</strong></p>
+    </div>
+        ';
+
+        $article['total'] = $article['qte'] * $article['prixProduit'];
+        echo '<div class="d-flex flex-column flex-shrink-1 align-items-end" style="padding-bottom: 22px;padding-top: 8px;">       
+              <p class="d-flex flex-shrink-1 justify-content-xl-center" style="padding-right: 20px;font-size: 18px;letter-spacing: 1px;color: rgb(0,0,0);"><strong>'.$article['total'].' €</strong></p>
+              </div>';
+        $compteurArray += 1;
+
+
+
+
+    }
+    $compteurArray = 0;
+
+
     ?>
 
 
