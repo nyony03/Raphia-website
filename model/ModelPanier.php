@@ -134,4 +134,20 @@ class ModelPanier
 
 
     }
+    public static function deleteFromLignePanier($idProduit, $idPanier){
+
+        $sql2 = 'DELETE FROM Raphia_lignePanier
+                WHERE idPanier =:id_Panier AND idProduit =:id_Produit';
+        $sql_prepare2 = Model::getPdo()->prepare($sql2);
+
+        $values2 = array(
+            "id_Produit" => $idProduit,
+            "id_Panier" => $idPanier,
+        );
+
+        $sql_prepare2->execute($values2);
+
+
+
+    }
 }

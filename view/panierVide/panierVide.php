@@ -37,7 +37,7 @@
     </nav>
     <div class="d-flex d-lg-flex flex-column justify-content-center align-items-center align-content-around" style="padding-top: 110px;"><i class="fas fa-shopping-basket" style="font-size: 170px;color: rgba(211,110,112,0.57);"></i>
         <p style="font-size: 20px;letter-spacing: 1px;color: rgb(255,255,255);background: #d36e7092;border-radius: 22px;padding-left: 6px;padding-right: 6px;font-family: 'Abhaya Libre', serif;">Votre panier est vide</p>
-        <p style="color: rgb(211,110,112);text-decoration: underline;font-weight: bold;letter-spacing: 1px;font-family: 'Abhaya Libre', serif;">Accueil</p>
+        <p onclick="location.href='index.php'" style="color: rgb(211,110,112);text-decoration: underline;font-weight: bold;letter-spacing: 1px;font-family: 'Abhaya Libre', serif;">Accueil</p>
     </div>
     <script src="../raphiaphp/view/panierVide/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>

@@ -78,7 +78,9 @@ $_SESSION['idUser'] = 31;
               </div>';
 
 
-
+        if($article['qte']==0){
+            ControlleurPanier::deleteProductFromPanier((int)$article['idProduit'],(int)$article['idPanier']);
+        }
 
     }
 

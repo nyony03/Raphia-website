@@ -4,9 +4,6 @@
 
 class ControlleurPanier
 {
-    public static function boutonAjouter($pointeurArray){
-        $_SESSION['produit qui lance le bouton'] = $pointeurArray;
-    }
 
     public static function readPanier()
     {
@@ -34,9 +31,8 @@ class ControlleurPanier
 
                 $panier = $_SESSION['panier'];
                 //si il est vide on le rederige vers un panier
-                if ($panier == false) {
-                    echo '<p>cest le deuxieme if de panier is not set si la requette retourne faut<p>';
-                    require('view/panier/panier.php');//deriger vers la vue de panier vide
+                if (ModelPanier::getAllProduitDansPanierByUser(31) == false) {
+                    require('view/panierVide/panierVide.php');//deriger vers la vue de panier vide
 
                 } //sinon le rederiger vers la vu de son panier
                 //sinon il regarde son panier
@@ -74,6 +70,13 @@ class ControlleurPanier
 
     }
 
+    public static function deleteProductFromPanier($idProduit,$idPanier)
+    {
+
+        ModelPanier::deleteFromLignePanier($idProduit, $idPanier);
+        echo '<body onload="location.href=\'index.php?action=readPanier\'"></body>';
 
 
-}
+    }
+
+    }
