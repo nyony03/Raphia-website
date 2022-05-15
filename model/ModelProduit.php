@@ -44,7 +44,7 @@ class ModelProduit
 
     public static function createLignePanier($idPanier, $idProduit)
     {
-        $sql = "INSERT INTO Raphia_lignePanier ($idPanier, idProduit) VALUES (:idPanier, :idProduit, :qte)";
+        $sql = "INSERT INTO Raphia_lignePanier (idPanier, idProduit, qte) VALUES (:idPanier, :idProduit, :qte)";
         $sql_prep = Model::getPDO()->prepare($sql);
         $values = array(
             "idPanier" => $idPanier,
@@ -56,7 +56,7 @@ class ModelProduit
 
     public function ajouterQuantiteProduit($idPanier, $idProduit)
     {
-        $sql = "UPDATE Raphia_lignePanier SET qte = qte + 1 WHERE idPanier =: idPanier AND idProduit =:idProduit";
+        $sql = "UPDATE Raphia_lignePanier SET qte = qte + 1 WHERE idPanier =:idPanier AND idProduit =:idProduit";
         $sql_prep = Model::getPDO()->prepare($sql);
         $values = array(
             "idPanier" => $idPanier,

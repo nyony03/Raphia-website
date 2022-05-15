@@ -22,10 +22,22 @@ class ControllerUtilisateur
         $mail = $_POST['mail'];
         $mdp = $_POST['mdp'];
         ModelUtilisateur::authentification($mail, $mdp);//appel au modèle pour gerer la BD
+
         $_SESSION['idPanier'] = ModelPanier::getIdPanierByIdUser($_SESSION['idUser']);
-        $panier = ModelPanier::getAllProduitDansPanierByUser($_SESSION['idUser']);
-        var_dump($panier);
-        //require('view/Produit/accueil.php');  //"redirige" vers la vue
+
+        if (isset($_SESSION['panier'])) {
+            ModelPanier::mergePanierSessionDb();
+        }
+
+        $panier = ModelPanier::getLignePanierByIdUser($_SESSION['idUser']);
+        $_SESSION['panier'] = $panier;
+
+        $_SESSION['panier_qte'] = 0;
+        foreach ($_SESSION['panier'] as $qte) {
+            $_SESSION['panier_qte'] += $qte;
+        }
+
+        header("Location: ../raphia"); //"redirige" vers la vue
     }
 
     public static function creation()

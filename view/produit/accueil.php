@@ -44,7 +44,7 @@
         <button class="btn btn-primary" type="button" style="background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;">Panier</button>
         <?php
         if(isset($_SESSION['panier_qte'])){
-            echo '<button class="btn btn-primary ms-2" type="button" style="background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;">' . $_SESSION['panier_qte'] . '</button>';
+            echo '<button class="btn btn-primary ms-2" type="button" style="background: #B22222;color: rgb(255,255,255);border-width: 0px;opacity: 1;">' . $_SESSION['panier_qte'] . '</button>';
         }
         ?>
     </div>
