@@ -2,6 +2,7 @@
 require_once File::build_path(array("controller","ControlleurPanier.php"));
 // On recupère l'action passée dans l'URL
 $action = $_GET["action"];
+$attribut = $_GET["attribut"];
 
 if (!isset($action)){
     echo "Bienvenue sur mon super site de nap";
@@ -9,11 +10,19 @@ if (!isset($action)){
 }
 else {
 // Appel de la méthode statique $action de ControllerVoiture
-    if ($action == 'readPanier') {
+    if (!isset($attribut)){
+        if ($action == 'readPanier') {
         ControlleurPanier::readPanier();
+        }
     }
-    if ($action == 'addQuantity( J AI BESOIN DE PASSER DES PARAM LA !! )'){
-        ControlleurPanier::addQuantity();
+    else {
+        if ($action=="adddQuantity") {
+            ControlleurPanier::addQuantity((int)$attribut[0], (int)$attribut[1]);
+        }
+        if($action=="removeQuantity"){
+            ControlleurPanier::removeQuantity((int)$attribut[0],(int)$attribut[1]);
+        }
+
 
     }
 }

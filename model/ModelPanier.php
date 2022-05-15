@@ -100,7 +100,6 @@ class ModelPanier
     }
 
     public static function addInLignePanier($idProduit, $idPanier){
-        echo "<p> nous somme dans la addINligne panier";
 
         $sql = 'UPDATE Raphia_lignePanier
                 SET qte = qte+1
@@ -112,7 +111,25 @@ class ModelPanier
             "id_Panier" => $idPanier,
         );
 
-        $sql_prepare->exeute($values);
+        $sql_prepare->execute($values);
+
+
+
+    }
+
+    public static function removeInLignePanier($idProduit, $idPanier){
+
+        $sql2 = 'UPDATE Raphia_lignePanier
+                SET qte = qte-1
+                WHERE idPanier =:id_Panier AND idProduit =:id_Produit';
+        $sql_prepare2 = Model::getPdo()->prepare($sql2);
+
+        $values2 = array(
+            "id_Produit" => $idProduit,
+            "id_Panier" => $idPanier,
+        );
+
+        $sql_prepare2->execute($values2);
 
 
 

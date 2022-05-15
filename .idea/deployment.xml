@@ -5,7 +5,7 @@
       <paths name="https://webinfo.iutmontp.univ-montp2.fr/~tabbabo/">
         <serverdata>
           <mappings>
-            <mapping deploy="/public_html/raphiaphp" local="$PROJECT_DIR$" web="/https://webinfo.iutmontp.univ-montp2.fr/~tabbabo/" />
+            <mapping deploy="/public_html/raphiaphp" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

@@ -14,7 +14,7 @@ $_SESSION['idUser'] = 31;
     <link rel="stylesheet" href="../raphiaphp/view/panier/assets/css/styles.css">
 </head>
 
-<body>
+<body >
     <nav class="navbar navbar-light navbar-expand-md" style="background: #ebd9d5;">
         <div class="container-fluid"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><img src="../raphiaphp/view/panier/assets/img/logo.png" style="width: 50px;">
             <div class="collapse navbar-collapse" id="navcol-1">
@@ -49,13 +49,12 @@ $_SESSION['idUser'] = 31;
     </div>
     <?php
     //for each dans le panier de la session pour recuperer les articles
-    $compteurArray = 0;
     foreach($_SESSION['panier'] as $lignePanier => $article ){
         //echo '<div class="d-flex flex-row flex-shrink-1 align-content-center"><img src="'.$article['image'].'" style="width: 120px;height: 120px;">';
-        var_dump($article);
 
         echo'
         <div class="d-flex flex-row flex-shrink-1 justify-content-between" style="padding-bottom: 12px;">
+        <!-- il faut rajouter le lien des images il se trouvev dans $article["image"] --->
         <div class="d-flex flex-row flex-shrink-1 align-content-center"><img src="../raphiaphp/view/Produit/assets/img/setTable.png" style="width: 120px;height: 120px;">
             <div class="d-flex flex-column flex-shrink-1" style="padding-left: 50px;">
                 <p style="font-size: 18px;font-weight: bold;letter-spacing: 1px;color: rgb(0,0,0);">'.$article['nomProduit'].'&nbsp;</p>
@@ -63,7 +62,8 @@ $_SESSION['idUser'] = 31;
                     <p style="font-size: 18px;letter-spacing: 1px;font-style: italic;color: rgb(0,0,0);">Quantité&nbsp; :</p>
                     <p style="font-size: 18px;letter-spacing: 1px;padding-left: 15px;">'.$article['qte'].'&nbsp;</p>
                 </div>
-                <div class="d-flex flex-row justify-content-evenly"><button class="btn btn-primary" type="button" style="font-size: 16px;font-weight: bold;background: rgb(211,110,112);border-color: rgb(211,110,112);">-</button><button onclick="location.href=\'index.php?action=addQuantity('.$article['idProduit'].','.$article['idPanier'].','..')\'" class="btn btn-primary" type="button" style="font-weight: bold;background: rgb(211,110,112);border-color: rgb(211,110,112);">+</button></div>
+                <div class="d-flex flex-row justify-content-evenly"><button onclick="location.href=\'index.php?action=removeQuantity&attribut[0]='.$article['idProduit'].'&attribut[1]='.$article['idPanier'].'\'"  class="btn btn-primary" type="button" style="font-size: 16px;font-weight: bold;background: rgb(211,110,112);border-color: rgb(211,110,112);">-</button>
+                <button onclick="location.href=\'index.php?action=addQuantity&attribut[0]='.$article['idProduit'].'&attribut[1]='.$article['idPanier'].'\'" class="btn btn-primary" type="button" style="font-weight: bold;background: rgb(211,110,112);border-color: rgb(211,110,112);">+</button></div>
             </div>
         </div>
         <p class="d-flex flex-shrink-1 justify-content-xl-center" style="padding-right: 20px;font-size: 18px;letter-spacing: 1px;color: rgb(0,0,0);"><strong>Total</strong></p>
@@ -74,13 +74,11 @@ $_SESSION['idUser'] = 31;
         echo '<div class="d-flex flex-column flex-shrink-1 align-items-end" style="padding-bottom: 22px;padding-top: 8px;">       
               <p class="d-flex flex-shrink-1 justify-content-xl-center" style="padding-right: 20px;font-size: 18px;letter-spacing: 1px;color: rgb(0,0,0);"><strong>'.$article['total'].' €</strong></p>
               </div>';
-        $compteurArray += 1;
 
 
 
 
     }
-    $compteurArray = 0;
 
 
     ?>

@@ -54,13 +54,25 @@ class ControlleurPanier
    }
 
    public static function addQuantity($idProduit,$idPanier){
-        echo "<p> nous somme dans la addQuantity";
 
 
        ModelPanier::addInLignePanier($idProduit,$idPanier);
-       require('view/panier/panier.php');
+       echo '<body onload="location.href=\'index.php?action=readPanier\'"></body>';
+
+
+
 
    }
+    public static function removeQuantity($idProduit,$idPanier){
+
+
+        ModelPanier::removeInLignePanier($idProduit,$idPanier);
+        echo '<body onload="location.href=\'index.php?action=readPanier\'"></body>';
+
+
+
+
+    }
 
 
 
