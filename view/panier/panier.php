@@ -90,7 +90,7 @@ $_SESSION['idUser'] = 31;
 
         <p class="d-flex flex-shrink-1 justify-content-xl-center" style="padding-right: 20px;font-weight: bold;font-size: 20px;letter-spacing: 1px;color: rgb(167,91,91);"><strong>Total</strong></p>
         <?php
-        echo '<p style="font-size: 19px;letter-spacing: 1px;">TVA : '. 0.2 * $totalPanier .'€ &nbsp;</p>';
+        echo '<p style="font-size: 19px;letter-spacing: 1px;">TVA : '. 0.2 * $totalPanier .'€&nbsp;</p>';
                 echo '<p style="font-size: 19px;letter-spacing: 1px;">Total : '.$totalPanier.'€ &nbsp;</p>';
 
         ?>

@@ -16,7 +16,7 @@ else {
         }
     }
     else {
-        if ($action=="adddQuantity") {
+        if ($action=="addQuantity") {
             ControlleurPanier::addQuantity((int)$attribut[0], (int)$attribut[1]);
         }
         if($action=="removeQuantity"){
