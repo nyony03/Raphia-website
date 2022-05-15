@@ -48,6 +48,7 @@ $_SESSION['idUser'] = 31;
         <p class="d-flex flex-shrink-1 justify-content-xl-center" style="padding-right: 20px;font-weight: bold;font-size: 20px;letter-spacing: 1px;color: rgb(167,91,91);border-color: rgb(167,91,91);"><strong>Total</strong></p>
     </div>
     <?php
+    $totalPanier = 0;
     //for each dans le panier de la session pour recuperer les articles
     foreach($_SESSION['panier'] as $lignePanier => $article ){
         //echo '<div class="d-flex flex-row flex-shrink-1 align-content-center"><img src="'.$article['image'].'" style="width: 120px;height: 120px;">';
@@ -71,6 +72,7 @@ $_SESSION['idUser'] = 31;
         ';
 
         $article['total'] = $article['qte'] * $article['prixProduit'];
+        $totalPanier +=  $article['total'] ;
         echo '<div class="d-flex flex-column flex-shrink-1 align-items-end" style="padding-bottom: 22px;padding-top: 8px;">       
               <p class="d-flex flex-shrink-1 justify-content-xl-center" style="padding-right: 20px;font-size: 18px;letter-spacing: 1px;color: rgb(0,0,0);"><strong>'.$article['total'].' €</strong></p>
               </div>';
@@ -85,8 +87,15 @@ $_SESSION['idUser'] = 31;
 
 
     <div class="d-flex flex-column flex-shrink-1 align-items-end" style="padding-bottom: 22px;padding-top: 8px;">
+
         <p class="d-flex flex-shrink-1 justify-content-xl-center" style="padding-right: 20px;font-weight: bold;font-size: 20px;letter-spacing: 1px;color: rgb(167,91,91);"><strong>Total</strong></p>
-        <p style="font-size: 19px;letter-spacing: 1px;">TotalInt&nbsp;</p>
+        <?php
+        echo '<p style="font-size: 19px;letter-spacing: 1px;">TVA : '. 0.2 * $totalPanier .'€ &nbsp;</p>';
+                echo '<p style="font-size: 19px;letter-spacing: 1px;">Total : '.$totalPanier.'€ &nbsp;</p>';
+
+        ?>
+
+
     </div>
     <script src="../raphiaphp/view/panier/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
