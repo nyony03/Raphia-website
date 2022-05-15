@@ -3,7 +3,7 @@
 <?php
 require_once File::build_path(array("model","ModelPanier.php")); // chargement du modèle
 
-class ControlleurPanier
+class ControllerPanier
 {
 
     public static function readPanier()
@@ -12,8 +12,6 @@ class ControlleurPanier
 
         $_SESSION['nom'] = "nadal";
         //$_SESSION['panier'] = [];
-
-
         //regarder si la session utilisateur contien un panier ou pas sinon on en lui creer un et on lui dit qu'il est vide
         //ou bien si son panier est vide
       if (!isset($_SESSION['panier'])) {
@@ -25,13 +23,10 @@ class ControlleurPanier
             if (isset($_SESSION['nom'])) {
                 //sa session contient un panier donc à voir si il est vide
 
-
-
                 array_push($_SESSION['panier'],ModelPanier::getAllProduitDansPanierByUser(31));//idUser recuperé à la connexion
 
                 $panier = $_SESSION['panier'];
                 $panier = json_decode(json_encode($panier));
-                var_dump($panier);
                 //si il est vide on le rederige vers un panier
                 if ($panier == false) {
                     echo '<p>cest le deuxieme if de panier is not set si la requette retourne faut<p>';

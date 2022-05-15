@@ -5,8 +5,6 @@ require_once File::build_path(array("model","Model.php"));
 
 class ModelPanier
 {
-
-
     private $nomProduit;
     private $quantité;
     private $prixProduit;
@@ -26,8 +24,6 @@ class ModelPanier
             "id_utilisateur" => $idUtilisateur,
         );
 
-
-
         $sql_prepare->execute($values);
 
         $sql_prepare->setFetchMode(PDO::FETCH_CLASS,'ModelPanier');
@@ -40,4 +36,25 @@ class ModelPanier
             return $tabLignesPanier;
         }
     }
+
+    public static function getIdPanierByIdUser($idUser){
+        $sql = "SELECT idPanier FROM Raphia_Panier WHERE idUser =:idUser";
+        $requete = Model::getPdo()->prepare($sql);
+        $values = array (
+            "idUser" => $idUser,
+        );
+        $requete->execute($values);
+
+        $requete->setFetchMode(PDO::FETCH_CLASS,'ModePanier');
+        $idPanier = $requete->fetchColumn();
+
+        if(!$idPanier)
+            return false;
+        return $idPanier;
+    }
+
+
+
+
+
 }

@@ -1,5 +1,5 @@
 <?php
-require_once File::build_path(array("model","Model.php"));
+require_once File::build_path(array("model", "Model.php"));
 
 class ModelUtilisateur
 {
@@ -9,63 +9,26 @@ class ModelUtilisateur
     private $mdp;
     private $mail;
 
-    /**
-     * @return mixed
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
 
-    /**
-     * @return mixed
-     */
-    public function getNom()
+    public static function getidUserByMail($mail)
     {
-        return $this->nom;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPrenom()
-    {
-        return $this->prenom;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAdresse()
-    {
-        return $this->adresse;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMail()
-    {
-        return $this->mail;
-    }
-
-    public static function getNomUtilisateur($name){
-        $sql = "SELECT * FROM Raphia_utilisateur WHERE nom =:nom_tag";
+        $sql = "SELECT idUser FROM Raphia_utilisateur WHERE mail =:mail";
         $requete = Model::getPdo()->prepare($sql);
-        $values = array (
-            "nom_tag" => $name,
+        $values = array(
+            "mail" => $mail,
         );
-         $requete->execute($values);
+        $requete->execute($values);
 
-         $requete->setFetchMode(PDO::FETCH_CLASS,'ModeUtilisateur');
-         $tab_user = $requete->fetchAll();
+        $requete->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+        $idUser = $requete->fetchColumn();
 
-         if(empty($tab_user))
-             return false;
-         return $tab_user[0];
+        if (!$idUser)
+            return false;
+        return $idUser;
     }
 
-    public static function createCompte($nom, $prenom,$mdp, $mail){
+    public static function createCompte($nom, $prenom, $mdp, $mail)
+    {
         $sql = "SELECT * FROM Raphia_utilisateur WHERE mail =:mail AND mdp =:mdp AND nom =:nom AND prenom =:prenom";
         $req_prep = Model::getPdo()->prepare($sql);
         $value = array(
@@ -77,10 +40,9 @@ class ModelUtilisateur
         $req_prep->execute($value);
         $req_prep->setFetchMode(PDO::FETCH_ASSOC);
         $tabUser = $req_prep->fetchAll();
-        var_dump($tabUser);
-        if(count($tabUser)>0){
+        if (count($tabUser) > 0) {
             echo "Vous avez déjà un compte ! Veuillez vous connecté";
-        }else{
+        } else {
             $sql = "INSERT INTO Raphia_utilisateur(nom, prenom, mdp, mail) VALUES (:name, :surname, :mdp, :mail)";
             $requete = Model::getPdo()->prepare($sql);
             $values = array(
@@ -90,11 +52,12 @@ class ModelUtilisateur
                 "mail" => $mail,
             );
             $requete->execute($values);
-            require ('view/formulaireCreationCompte/creationCompteOK.php');  //"redirige" vers la vue
+            require('view/CreationCompte/creationCompteOK.php');  //"redirige" vers la vue
         }
     }
 
-    public static function authentification($mail, $mdp){
+    public static function authentification($mail, $mdp)
+    {
         $sql = "SELECT * FROM Raphia_utilisateur WHERE mail =:mail AND mdp =:mdp";
         $req_prep = Model::getPdo()->prepare($sql);
         $value = array(
@@ -104,13 +67,12 @@ class ModelUtilisateur
         $req_prep->execute($value);
         $req_prep->setFetchMode(PDO::FETCH_ASSOC);
         $tabUser = $req_prep->fetchAll();
-        if(count($tabUser)>0){
+        if (count($tabUser) > 0) {
             //Pour récupérer la session
             $_SESSION['nom'] = $tabUser[0]['nom'];
             $_SESSION['mail'] = $tabUser[0]['mail'];
-            header("Location: ../raphia");
-
-        }else{
+            $_SESSION['idUser'] = $tabUser[0]['idUser'];
+        } else {
             echo "ERREUR LOGIN";
         }
     }
@@ -136,5 +98,16 @@ class ModelUtilisateur
 
         header("Location: ../raphia");
 
+    }
+
+    public static function createPanierUtilisateur($idUser)
+    {
+        $sql = "INSERT INTO Raphia_Panier (idUser, date) VALUES (:idUser, :date)";
+        $sql_prep = Model::getPDO()->prepare($sql);
+        $values = array(
+            "idUser" => $idUser,
+            "date" => (new DateTime('now'))->format('Y-m-d'),
+        );
+        $sql_prep->execute($values);
     }
 }
