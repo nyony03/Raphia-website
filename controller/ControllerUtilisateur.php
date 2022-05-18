@@ -17,27 +17,37 @@ class ControllerUtilisateur
         require('view/CreationCompte/creationCompte.php');
     }
 
+    //supprimer compte
+    public static function deleteCompte()
+    {
+        ModelUtilisateur::deleteLignePanier($_SESSION['idPanier']);
+        ModelUtilisateur::deletePanier($_SESSION['idPanier']);
+        ModelUtilisateur::deleteCompte($_SESSION['idUser']);
+        require('view/suppressionCompte/deteleOK.php');
+        session_destroy();
+    }
+
     public static function authentification()
     {
         $mail = $_POST['mail'];
         $mdp = $_POST['mdp'];
         ModelUtilisateur::authentification($mail, $mdp);//appel au modèle pour gerer la BD
+        if(isset($_SESSION['idUser'])){
+            $_SESSION['idPanier'] = ModelPanier::getIdPanierByIdUser($_SESSION['idUser']);
 
-        $_SESSION['idPanier'] = ModelPanier::getIdPanierByIdUser($_SESSION['idUser']);
+            if (isset($_SESSION['panier'])) {
+                ModelPanier::mergePanierSessionDb();
+            }
 
-        if (isset($_SESSION['panier'])) {
-            ModelPanier::mergePanierSessionDb();
+            $panier = ModelPanier::getLignePanierByIdUser($_SESSION['idUser']);
+            $_SESSION['panier'] = $panier;
+
+            $_SESSION['panier_qte'] = 0;
+            foreach ($_SESSION['panier'] as $qte) {
+                $_SESSION['panier_qte'] += $qte;
+            }
         }
 
-        $panier = ModelPanier::getLignePanierByIdUser($_SESSION['idUser']);
-        $_SESSION['panier'] = $panier;
-
-        $_SESSION['panier_qte'] = 0;
-        foreach ($_SESSION['panier'] as $qte) {
-            $_SESSION['panier_qte'] += $qte;
-        }
-
-        header("Location: ../raphia"); //"redirige" vers la vue
     }
 
     public static function creation()
@@ -48,8 +58,31 @@ class ControllerUtilisateur
         $mdp = $_POST['mdp'];
         ModelUtilisateur::createCompte($nom, $prenom, $mdp, $mail);
         $idUser = ModelUtilisateur::getidUserByMail($mail);
+        $_SESSION['idUser'] = $idUser;
         ModelUtilisateur::createPanierUtilisateur($idUser);
         $_SESSION['idPanier'] = ModelPanier::getIdPanierByIdUser($idUser);
+        $_SESSION['prenom'] = $prenom;
+        $_SESSION['nom'] = $nom;
+        $_SESSION['mdp'] = $mdp;
+    }
+
+    public static function modificationView()
+    {
+        require('view/modificationCompte/modificationCompte.php');
+    }
+
+    public static function modificationCompte()
+    {
+        $new_name = $_POST['newName'] ?? $_SESSION['nom'];
+        $new_surname = $_POST['newSurname'] ?? $_SESSION['prenom'];
+        $new_mdp = $_POST['newMDP'] ?? $_SESSION['mdp']; //à revoir
+        $last_mdp = $_POST['lastMDP'];
+        if($new_mdp == $last_mdp){
+            require('view/modificationCompte/errorCreate.php');
+        }else{
+            ModelUtilisateur::modifyCompte($_SESSION['idUser'], $new_name, $new_surname, $new_mdp);
+        }
+
     }
 
     public static function deconnexion()

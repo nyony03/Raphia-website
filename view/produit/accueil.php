@@ -38,6 +38,7 @@
         else{
             echo '</ul><p class="d-flex align-self-center navbar-text" style="color: rgb(167,91,91);letter-spacing: 1px;font-size: 18px; serif; margin-right:20px; margin-top:15px; font-weight: bold;margin-left: auto;" contenteditable="true"> Bienvenue ' .$_SESSION['nom'].'</p></ul>';
             echo '</ul><button class="btn btn-primary" type="button" style="background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;margin: 10px;" onclick="location.href=\'index.php?action=deconnexion\'">Deconnexion</button>';
+            echo '</ul><button class="btn btn-primary" type="button" style="background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;margin: 10px;" onclick="location.href=\'index.php?action=modificationView\'">Modifier mon compte</button>';
 
         }
         ?>
@@ -89,7 +90,7 @@
             <ul class="list-inline">
                 <li class="list-inline-item me-4"><a class="link-secondary" href="index.php?action=readAll" " style="font-size: 17px;">Produits</a></li>
                 <li class="list-inline-item me-4"><a class="link-secondary" href="index.php?action=readConnexion" style="font-size: 17px;">Connexion</a></li>
-                <li class="list-inline-item"><a class="link-secondary" href="#" style="font-size: 17px;">Contact</a></li>
+                <li class="list-inline-item"><a class="link-secondary" href="index.php?action=viewAdmin" style="font-size: 17px;">Administration</a></li>
             </ul>
             <p class="mb-0">Copyright © 2022 Raphia</p>
         </div>

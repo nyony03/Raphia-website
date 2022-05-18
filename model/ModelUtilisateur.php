@@ -72,8 +72,9 @@ class ModelUtilisateur
             $_SESSION['nom'] = $tabUser[0]['nom'];
             $_SESSION['mail'] = $tabUser[0]['mail'];
             $_SESSION['idUser'] = $tabUser[0]['idUser'];
+            header("Location: ../raphia"); //"redirige" vers la vue
         } else {
-            echo "ERREUR LOGIN";
+            require('view/connexion/connexionError.php');
         }
     }
 
@@ -86,12 +87,12 @@ class ModelUtilisateur
         // le cookie de session.
         // Note : cela détruira la session et pas seulement les données de session !
         if (ini_get("session.use_cookies")) {
-            $params = session_get_cookie_params();
-            setcookie(session_name(), '', time() - 42000,
-                $params["path"], $params["domain"],
-                $params["secure"], $params["httponly"]
-            );
-        }
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]
+        );
+    }
 
         // On détruit la session
         session_destroy();
@@ -110,4 +111,80 @@ class ModelUtilisateur
         );
         $sql_prep->execute($values);
     }
+
+    public static function modifyCompte($idUser, $new_name, $new_surname, $new_mdp)
+    {
+        $sql = "UPDATE Raphia_utilisateur SET nom =:nom, prenom =:prenom, mdp =:mdp WHERE idUser =:idUser";
+        $requete = Model::getPdo()->prepare($sql);
+        $values = array(
+            "nom" => $new_name,
+            "prenom" => $new_surname,
+            "mdp" => $new_mdp,
+            "idUser" => $idUser,
+        );
+        $requete->execute($values);
+        var_dump($requete);
+        require('view/modificationCompte/modificationOK.php');
+    }
+
+    public static function deleteCompte($idUser)
+    {
+        $sql = "DELETE FROM Raphia_utilisateur WHERE idUser =:idUser";
+        $requete = Model::getPdo()->prepare($sql);
+        $values = array(
+            "idUser" => $idUser,
+        );
+        $requete->execute($values);
+    }
+    public static function deletePanier($idPanier)
+    {
+        $sql = "DELETE FROM Raphia_Panier WHERE idPanier =:idPanier";
+        $requete = Model::getPdo()->prepare($sql);
+        $values = array(
+            "idPanier" => $idPanier,
+        );
+        $requete->execute($values);
+    }
+    public static function deleteLignePanier($idPanier)
+    {
+        $sql = "DELETE FROM Raphia_lignePanier WHERE idPanier =:idPanier";
+        $requete = Model::getPdo()->prepare($sql);
+        $values = array(
+            "idPanier" => $idPanier,
+        );
+        $requete->execute($values);
+    }
+
+
+    public static function getIdPanierByAdmin($mail)
+    {
+        $sql = "SELECT idPanier FROM Raphia_Panier
+                JOIN Raphia_utilisateur ON Raphia_Panier.idUser = Raphia_utilisateur.idUser
+                WHERE mail =:mail";
+
+        $requete = Model::getPdo()->prepare($sql);
+        $values = array(
+            "mail" => $mail,
+        );
+        $requete->execute($values);
+
+        $requete->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+        $idPanier = $requete->fetchColumn();
+
+        if (!$idPanier)
+            return false;
+        return $idPanier;
+    }
+
+
+    public static function deleteCompteByAdmin($mail)
+    {
+        $sql = "DELETE FROM Raphia_utilisateur WHERE mail =:mail";
+        $requete = Model::getPdo()->prepare($sql);
+        $values = array(
+            "mail" => $mail,
+        );
+        $requete->execute($values);
+    }
+
 }

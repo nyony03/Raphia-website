@@ -27,8 +27,8 @@
             <div>
                     <div>
                         <div style="padding-right: 100px; background: rgba(222,222,222,0.58);border-radius: 25px;padding: 8px;margin-top: 15px;">
-                            <p style="background: rgba(255,255,255,0);border-style: none;padding: 7px 2px;margin-left: 25px;color: rgb(186,156,156);">Votre Compte a été bien créée</p>
-                            <p style="background: rgba(255,255,255,0);border-style: none;padding: 7px 2px;margin-left: 25px;color: rgb(186,156,156);">Veuillez retouner à la page d'accueil et vous reconnectez</p>
+                            <p style="background: rgba(255,255,255,0);border-style: none;padding: 7px 2px;margin-left: 25px;color: rgb(186,156,156);">Votre Compte a créé avec succés !!!</p>
+                            <p style="background: rgba(255,255,255,0);border-style: none;padding: 7px 2px;margin-left: 25px;color: rgb(186,156,156);">Veuillez retouner à la page d'accueil et vous connectez !!!</p>
                         </div>
                     </div>
             </div>
