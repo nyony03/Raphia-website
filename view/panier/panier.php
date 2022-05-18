@@ -50,7 +50,8 @@ $_SESSION['idUser'] = 31;
     <?php
     $totalPanier = 0;
     //for each dans le panier de la session pour recuperer les articles
-    foreach($_SESSION['panier'] as $lignePanier => $article ){
+    foreach($_SESSION['panier'][0] as $lignePanier => $article ){
+
         //echo '<div class="d-flex flex-row flex-shrink-1 align-content-center"><img src="'.$article['image'].'" style="width: 120px;height: 120px;">';
 
         echo'
@@ -94,11 +95,14 @@ $_SESSION['idUser'] = 31;
         <?php
         echo '<p style="font-size: 19px;letter-spacing: 1px;">TVA : '. 0.2 * $totalPanier .'€&nbsp;</p>';
                 echo '<p style="font-size: 19px;letter-spacing: 1px;">Total : '.$totalPanier.'€ &nbsp;</p>';
+                $_SESSION['totalPanier'] = $totalPanier;
 
         ?>
 
 
     </div>
+
+    <div onclick="location.href='index.php?action=creatCommande'" class="d-flex flex-column flex-shrink-1 align-items-end" style="padding-bottom: 22px;padding-top: 8px;">Passer ma commande </div>
     <script src="../raphiaphp/view/panier/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 

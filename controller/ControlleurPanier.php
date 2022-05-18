@@ -13,6 +13,7 @@ class ControlleurPanier
         $_SESSION['panier'] = [];
 
 
+
         //regarder si la session utilisateur contien un panier ou pas sinon on en lui creer un et on lui dit qu'il est vide
         //ou bien si son panier est vide
       if (!isset($_SESSION['panier'])) {

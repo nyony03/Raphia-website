@@ -87,13 +87,16 @@ class ModelPanier
             return false;
         }
         else {
+
             $tablignePanier = [];
-            $tablignePanier['nomProduit'] =  $tabObjetLignesPanier[0]->getNomProduit();
-            $tablignePanier['prixProduit'] = $tabObjetLignesPanier[0] -> getPrixProduit();
-            $tablignePanier['qte'] =  $tabObjetLignesPanier[0]->getQte();
-            $tablignePanier['image'] = $tabObjetLignesPanier[0]->getImage();
-            $tablignePanier['idPanier'] = $tabObjetLignesPanier[0]->getIdPanier();
-            $tablignePanier['idProduit'] = $tabObjetLignesPanier[0]->getIdProduit();
+            for($i = 0; $i < sizeof($tabObjetLignesPanier); $i++) {
+                $tablignePanier[$i]['nomProduit'] = $tabObjetLignesPanier[$i]->getNomProduit();
+                $tablignePanier[$i]['prixProduit'] = $tabObjetLignesPanier[$i]->getPrixProduit();
+                $tablignePanier[$i]['qte'] = $tabObjetLignesPanier[$i]->getQte();
+                $tablignePanier[$i]['image'] = $tabObjetLignesPanier[$i]->getImage();
+                $tablignePanier[$i]['idPanier'] = $tabObjetLignesPanier[$i]->getIdPanier();
+                $tablignePanier[$i]['idProduit'] = $tabObjetLignesPanier[$i]->getIdProduit();
+            }
             return $tablignePanier;
 
         }
@@ -122,32 +125,68 @@ class ModelPanier
         $sql2 = 'UPDATE Raphia_lignePanier
                 SET qte = qte-1
                 WHERE idPanier =:id_Panier AND idProduit =:id_Produit';
-        $sql_prepare2 = Model::getPdo()->prepare($sql2);
+        $sql_prepare = Model::getPdo()->prepare($sql2);
 
         $values2 = array(
             "id_Produit" => $idProduit,
             "id_Panier" => $idPanier,
         );
 
-        $sql_prepare2->execute($values2);
+        $sql_prepare->execute($values2);
 
 
 
     }
     public static function deleteFromLignePanier($idProduit, $idPanier){
 
-        $sql2 = 'DELETE FROM Raphia_lignePanier
+        $sql = 'DELETE FROM Raphia_lignePanier
                 WHERE idPanier =:id_Panier AND idProduit =:id_Produit';
-        $sql_prepare2 = Model::getPdo()->prepare($sql2);
+        $sql_prepare = Model::getPdo()->prepare($sql);
 
         $values2 = array(
             "id_Produit" => $idProduit,
             "id_Panier" => $idPanier,
         );
 
-        $sql_prepare2->execute($values2);
+        $sql_prepare->execute($values2);
 
 
 
+    }
+    
+    public static function deleteAllPanier(){
+        $tabLignesPanbier = ModelPanier::getAllProduitDansPanierByUser($_SESSION['idUser']);
+        $idPanier = $tabLignesPanbier[0]['idPanier'];
+        foreach ($tabLignesPanbier as $i => $ligneProduit){
+            $idPanier = $ligneProduit['idPanier'];
+            $idProduit = $ligneProduit['idProduit'];
+
+            $sql = 'DELETE FROM Raphia_lignePanier
+                WHERE idPanier =:id_Panier AND idProduit =:id_Produit';
+            $sql_prepare = Model::getPdo()->prepare($sql);
+
+            $values2 = array(
+                "id_Produit" => $idProduit,
+                "id_Panier" => $idPanier,
+            );
+
+            $sql_prepare->execute($values2);
+        }
+
+
+
+        $sql = 'DELETE FROM Raphia_Panier
+                WHERE idPanier =:id_Panier ';
+        $sql_prepare = Model::getPdo()->prepare($sql);
+
+        $values2 = array(
+            "id_Panier" => $idPanier,
+        );
+
+        $sql_prepare->execute($values2);
+
+
+
+        
     }
 }

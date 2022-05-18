@@ -1,5 +1,6 @@
 <?php
 require_once File::build_path(array("controller","ControlleurPanier.php"));
+require_once File::build_path(array("controller","ControlleurCommande.php"));
 // On recupère l'action passée dans l'URL
 $action = $_GET["action"];
 $attribut = $_GET["attribut"];
@@ -13,6 +14,10 @@ else {
     if (!isset($attribut)){
         if ($action == 'readPanier') {
         ControlleurPanier::readPanier();
+        }
+        if($action == 'creatCommande'){
+            ControlleurCommande::creatCommande();
+
         }
     }
     else {
