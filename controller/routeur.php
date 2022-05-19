@@ -16,7 +16,7 @@ if ($action == 'readConnexion' || $action == 'authentification' || $action == 'c
     ControllerUtilisateur::$action();
 }
 if(isset($_SESSION['idUser'])){
-    if ($action == 'viewAdmin' || $action == 'deleteUserByAdmin' || $action == 'creationCompteParAdminView' || $action == 'creationCompteParAdmin'){
+    if ($action == 'viewAdmin' || $action == 'deleteUserByAdmin' || $action == 'creationCompteParAdminView' || $action == 'creationCompteParAdmin' || $action =='viewCreationProduit'){
         ControllerAdministrator::$action();
     }
 }

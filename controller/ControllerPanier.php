@@ -41,7 +41,6 @@ class ControllerPanier
             //sinon il est juste pas connecté et on  le renvoie à son panier
             else{
                 require('view/panier/panier.php');
-
             }
 
         }

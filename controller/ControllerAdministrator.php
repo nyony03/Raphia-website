@@ -8,7 +8,8 @@ class ControllerAdministrator
         require('view/administrator/adminView.php');  //"redirige" vers la vue detail
     }
 
-    public static function deleteUserByAdmin(){
+    public static function deleteUserByAdmin()
+    {
         $_SESSION['mailUser'] = $_POST['mail-delete'];
         $idPanier = ModelUtilisateur::getIdPanierByAdmin($_SESSION['mailUser']);
         ModelUtilisateur::deleteLignePanier($idPanier);
@@ -17,7 +18,8 @@ class ControllerAdministrator
         require('view/suppressionCompte/deteleOK.php');
     }
 
-    public static function creationCompteParAdminView(){
+    public static function creationCompteParAdminView()
+    {
         require('view/CreationCompte/creationCompteParAdminView.php');
     }
 
@@ -30,5 +32,21 @@ class ControllerAdministrator
         ModelUtilisateur::createCompte($nom, $prenom, $mdp, $mail);
         $idUser2 = ModelUtilisateur::getidUserByMail($mail);
         ModelUtilisateur::createPanierUtilisateur($idUser2);
+    }
+
+    public static function creationProduitParAdmin()
+    {   $_SESSION['nomCategorie'] = $_POST['decoration'] || $_POST['plage'] || $_POST['mode'];
+        $nomProduit = $_POST['nomProduit'];
+        $prixProduit = $_POST['prix'];
+        $idCategorie = $_POST['idCategorie'];
+        $description = $_POST['description'];
+        $image = $_POST['image'];
+        ModelCategorie::getIdCategorieByName($_SESSION['nomCategorie']);
+        ModelProduit::createProduit($nomProduit, $prixProduit, $idCategorie, $description, $image);
+    }
+
+    public static function viewCreationProduit()
+    {
+        require('view/gestion-produit/gestionProduit.php');
     }
 }

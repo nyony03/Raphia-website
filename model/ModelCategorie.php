@@ -15,6 +15,22 @@ class ModelCategorie
         return $tabCategorie;
     }
 
+    public static function getIdCategorieByName($nomCategorie)
+    {
+        $sql = "SELECT idCategorie FROM Raphia_Categorie WHERE nomCategorie =:nomCategorie";
+        $requete = Model::getPdo()->prepare($sql);
+        $values = array(
+            "nomCategorie" => $nomCategorie,
+        );
+        $requete->execute($values);
+
+        $requete->setFetchMode(PDO::FETCH_CLASS, 'ModelCategorie');
+        $idCategorie = $requete->fetchColumn();
+
+        if (!$idCategorie)
+            return false;
+        return $idCategorie;
+    }
 
 
     /**

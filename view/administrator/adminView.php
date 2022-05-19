@@ -16,7 +16,7 @@
         <div onclick='location.href="index.php?action=readAll"'>
             <picture><img src="../raphia/view/administrator/assets/img/logo.png" width="50" height="50"></picture><a class="navbar-brand" href="#" style="color: #a75b5b;"><strong><em>Raphia</em></strong></a>
         </div>
-        <div class="btn btn-primary" style="background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;">Bienvenue sur la page d'administration du site</div>
+        <div style="background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;">Bienvenue sur la page d'administration du site</div>
     </div>
 </nav>
 <div></div>
@@ -28,7 +28,7 @@
                     <div style="border-radius: 25px;">
                         <p style="font-size: 25px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);">Gestion Produit</p>
                     </div>
-                    <input type="button" value="Ajout produit" style="background: rgba(211,110,112,0.57);border-radius: 25px;padding: 8px;margin-top: 15px;">
+                    <input type="button" onclick='location.href="index.php?action=viewCreationProduit"' value="Ajout produit" style="background: rgba(211,110,112,0.57);border-radius: 25px;padding: 8px;margin-top: 15px;">
                     <div>
                         <input type="submit" value="Modification produit" style="background: rgba(211,110,112,0.57);border-radius: 25px;padding: 8px;margin-top: 15px;">
                     </div>

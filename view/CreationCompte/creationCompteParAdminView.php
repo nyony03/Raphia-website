@@ -37,7 +37,6 @@
                         <div style="padding-top: 50px;">
                             <input type="submit" value="Créer un compte" style="background: rgba(211,110,112,0.57);border-radius: 25px;padding: 8px;margin-top: 15px;">
                         </div>
-                        </input>
                     </div>
                 </form>
 
