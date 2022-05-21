@@ -14,11 +14,6 @@ class ModelPanier
     private $image;
     private $total;
 
-
-
-
-
-
     public function getNomProduit()
     {
         return $this->nomProduit;
@@ -218,6 +213,23 @@ class ModelPanier
         $panier = $requete->fetchAll();
 
         return $panier;
+    }
+
+    public static function getProduitByidProduit($idProduit)
+    {
+        $requete = Model::getPdo()->prepare("
+            SELECT nomProduit, prixProduit, image FROM Raphia_Produit WHERE idProduit =:id_produit
+        ");
+        $requete->execute(["id_produit" => $idProduit]);
+        $requete->setFetchMode(PDO::FETCH_ASSOC);
+
+        $objetsProduit = $requete->fetch();
+
+        return [
+            'nomProduit' => $objetsProduit['nomProduit'],
+            'prixProduit' => $objetsProduit['prixProduit'],
+            'image' => $objetsProduit['image'],
+        ];
     }
 
     public static function mergePanierSessionDb()

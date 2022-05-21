@@ -5,7 +5,7 @@
       <paths name="webObada">
         <serverdata>
           <mappings>
-            <mapping deploy="/public_html/raphia" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/public_html/raphia" local="$PROJECT_DIR$" web="http://webinfo.iutmontp.univ-montp2.fr/~tabbabo/" />
           </mappings>
         </serverdata>
       </paths>

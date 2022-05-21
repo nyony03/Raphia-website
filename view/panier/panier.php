@@ -47,13 +47,33 @@
 
     $totalPanier = 0;
     //for each dans le panier de la session pour recuperer les articles
+    if(!isset($_SESSION['idUser'])) {
+        foreach ($_SESSION['panier'] as $article) {
 
+            echo'
+        <div class="d-flex flex-row flex-shrink-1 justify-content-between" style="padding-bottom: 12px;">
+        <div class="d-flex flex-row flex-shrink-1 align-content-center"> <img src="'.$article["image"].'" style="width: 120px;height: 120px;">
+            <div class="d-flex flex-column flex-shrink-1" style="padding-left: 50px;">
+                <p style="font-size: 18px;font-weight: bold;letter-spacing: 1px;color: rgb(0,0,0);">'.$article['nomProduit'].'&nbsp;</p>
+                <div class="d-flex flex-row">
+                    <p style="font-size: 18px;letter-spacing: 1px;font-style: italic;color: rgb(0,0,0);">Quantité&nbsp; :</p>
+                    <p style="font-size: 18px;letter-spacing: 1px;padding-left: 15px;">'.$article['qte'].'&nbsp;</p>
+                </div>
+            </div>
+        </div>';
 
-    foreach($_SESSION['panier'] as $lignePanier => $article ){
+            $article['total'] = $article['qte'] * $article['prixProduit'];
+            $totalPanier +=  $article['total'] ;
 
-        //echo '<div class="d-flex flex-row flex-shrink-1 align-content-center"><img src="'.$article['image'].'" style="width: 120px;height: 120px;">';
+            echo' <p class="d-flex flex-shrink-1 justify-content-xl-center" style="padding-right: 20px;font-size: 18px;letter-spacing: 1px;color: rgb(0,0,0);">'.$article['total'].'€ </p>
+            </div>';
 
-        echo'
+        }
+    } else{
+
+        foreach($_SESSION['panier'] as $article ){
+
+            echo'
         <div class="d-flex flex-row flex-shrink-1 justify-content-between" style="padding-bottom: 12px;">
         <div class="d-flex flex-row flex-shrink-1 align-content-center"> <img src="'.$article['image'].'" style="width: 120px;height: 120px;">
             <div class="d-flex flex-column flex-shrink-1" style="padding-left: 50px;">
@@ -67,23 +87,18 @@
             </div>
         </div>';
 
-        $article['total'] = $article['qte'] * $article['prixProduit'];
-        $totalPanier +=  $article['total'] ;
+            $article['total'] = $article['qte'] * $article['prixProduit'];
+            $totalPanier +=  $article['total'] ;
 
-       echo' <p class="d-flex flex-shrink-1 justify-content-xl-center" style="padding-right: 20px;font-size: 18px;letter-spacing: 1px;color: rgb(0,0,0);">'.$article['total'].'€ </p>
-    </div>';
+            echo' <p class="d-flex flex-shrink-1 justify-content-xl-center" style="padding-right: 20px;font-size: 18px;letter-spacing: 1px;color: rgb(0,0,0);">'.$article['total'].'€ </p>
+            </div>';
 
-
-
-        if($article['qte']==0){
-            ControllerPanier::deleteProductFromPanier((int)$article['idProduit'],(int)$article['idPanier']);
+            if($article['qte']==0) {
+                ControllerPanier::deleteProductFromPanier((int)$article['idProduit'],(int)$article['idPanier']);
+            }
         }
-
     }
-
-
     ?>
-
 
     <div class="d-flex flex-column flex-shrink-1 align-items-end" style="padding-bottom: 22px;padding-top: 8px;">
 

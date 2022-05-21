@@ -8,7 +8,7 @@ require_once File::build_path(array("controller", "ControllerAdministrator.php")
 // On recupère l'action passée dans l'URL
 
 $action = $_GET["action"] ?? 'readAll';
-$attribut = $_GET["attribut"] ;
+$attribut = $_GET["attribut"] ?? '';
 
 
 
@@ -33,7 +33,7 @@ if (!isset($action)){
 }
 else {
 // Appel de la méthode statique $action de ControllerVoiture
-    if (!isset($attribut)){
+    if (!$attribut){
         if ($action == 'readPanier') {
             ControllerPanier::readPanier();
         }
