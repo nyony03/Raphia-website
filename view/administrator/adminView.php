@@ -28,7 +28,7 @@
                     <div style="border-radius: 25px;">
                         <p style="font-size: 25px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);">Gestion Produit</p>
                     </div>
-                    <input type="button" value="Ajout produit" style="background: rgba(211,110,112,0.57);border-radius: 25px;padding: 8px;margin-top: 15px;">
+                    <input type="button" onclick='location.href="index.php?action=creationProduitParAdmin"' value="Ajout produit" style="background: rgba(211,110,112,0.57);border-radius: 25px;padding: 8px;margin-top: 15px;">
                     <div>
                         <input type="submit" value="Modification produit" style="background: rgba(211,110,112,0.57);border-radius: 25px;padding: 8px;margin-top: 15px;">
                     </div>
@@ -44,7 +44,7 @@
                     <div style="border-radius: 25px; margin-top: 50px">
                         <p style="font-size: 25px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);">Gestion utilisateur</p>
                     </div>
-                    <button type="button" style="background: rgba(211,110,112,0.57);border-radius: 25px;padding: 8px;margin-top: 15px;" onclick='location.href="index.php?action=creationCompteParAdminView"'>Créer un compte</button>
+                    <button type="button" style="background: rgba(211,110,112,0.57);border-radius: 25px;padding: 8px;margin-top: 15px;"  onclick='location.href="index.php?action=creationCompteParAdminView"'>Créer un compte</button>
                         <form method="post" action="#">
                         <p style="letter-spacing: 1px;margin-top: 20px; color: rgba(211,110,112,0.77);padding: 10px;">Veuillez saisir le mail du compte à modifier</p>
                         <div style="background: rgba(222,222,222,0.58);border-radius: 25px;padding: 8px;margin-top: 15px;"><i class="fas fa-mail-bulk" style="margin-left: 15px;font-size: 20px;color: rgb(186,156,156);"></i><input type="text" name="mail-modify" style="background: rgba(255,255,255,0);border-style: none;padding: 7px 2px;margin-left: 25px;color: rgb(186,156,156);" placeholder="Mail"></div>

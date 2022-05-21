@@ -21,6 +21,10 @@ class ControllerAdministrator
         require('view/CreationCompte/creationCompteParAdminView.php');
     }
 
+    public static function creationProduitParAdmin(){
+        require ('view/gestionProduit/creationProduitParAdmin.php');
+    }
+
     public static function creationCompteParAdmin()
     {
         $mail = $_POST['mail'];
