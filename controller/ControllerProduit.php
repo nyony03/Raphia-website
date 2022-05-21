@@ -8,7 +8,7 @@ class ControllerProduit
     {
         $tab_v = ModelProduit::getAllProduit();//appel au modèle pour gerer la BD
         $tab_cat = ModelCategorie::getAllNameCategorie(); //appel au modele catégorie
-        require('view/Produit/accueil.php');  //"redirige" vers la vue
+        require('view/produit/accueil.php');  //"redirige" vers la vue
     }
 
 
@@ -16,7 +16,7 @@ class ControllerProduit
     {
         $tab_detail = ModelProduit::getProduitByCat($_GET['nomCategorie']);
         $tab_cat = ModelCategorie::getAllNameCategorie(); //appel au modele catégorie
-        require('view/Produit/detail.php');  //"redirige" vers la vue detail
+        require('view/produit/detail.php');  //"redirige" vers la vue detail
     }
 
     public static function ajoutProduitPanierSession()

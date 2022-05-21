@@ -5,18 +5,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>raphia</title>
-    <link rel="stylesheet" href="../raphia/view/Produit/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../raphia/view/produit/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abhaya+Libre&amp;display=swap">
-    <link rel="stylesheet" href="../raphia/view/Produit/assets/css/Articles-Cards.css">
-    <link rel="stylesheet" href="../raphia/view/Produit/assets/css/Navbar-Right-Links.css">
-    <link rel="stylesheet" href="../raphia/view/Produit/assets/css/styles.css">
+    <link rel="stylesheet" href="../raphia/view/produit/assets/css/Articles-Cards.css">
+    <link rel="stylesheet" href="../raphia/view/produit/assets/css/Navbar-Right-Links.css">
+    <link rel="stylesheet" href="../raphia/view/produit/assets/css/styles.css">
 </head>
 
 <body>
 <nav class="navbar navbar-light navbar-expand-md" style="background: #ebd9d5;">
     <div class="container-fluid">
         <div onclick='location.href="index.php?action=readAll"'>
-            <picture><img src="../raphia/view/Produit/assets/img/logo.png" width="50" height="50"></picture>
+            <picture><img src="../raphia/view/produit/assets/img/logo.png" width="50" height="50"></picture>
             <a class="navbar-brand" href="#" style="color: #a75b5b;"><strong><em>Raphia</em></strong></a>
         </div>
         <div class="collapse navbar-collapse" id="navcol-1">
@@ -42,7 +42,7 @@
 
         }
         ?>
-        <button class="btn btn-primary" type="button" style="background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;">Panier</button>
+        <button onclick='location.href="index.php?action=readPanier"' class="btn btn-primary" type="button" style="background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;">Panier</button>
         <?php
         if(isset($_SESSION['panier_qte'])){
             echo '<button class="btn btn-primary ms-2" type="button" style="background: #B22222;color: rgb(255,255,255);border-width: 0px;opacity: 1;">' . $_SESSION['panier_qte'] . '</button>';
@@ -50,7 +50,7 @@
         ?>
     </div>
 </nav>
-<div id="promo" style="background: url('../raphia/view/Produit/assets/img/photo-accueil.png') left / cover no-repeat;">
+<div id="promo" style="background: url('../raphia/view/produit/assets/img/photo-accueil.png') left / cover no-repeat;">
     <div class="container" style="background: rgba(235,217,213,0.78);">
         <h1 style="font-family: 'Abhaya Libre', serif;">Bienvenue sur Raphia</h1>
         <p style="font-style: italic;font-family: 'Abhaya Libre', serif;font-size: 20px;">Découvrez l'art de toute une île</p>
@@ -96,7 +96,7 @@
         </div>
     </footer>
 </div>
-<script src="../raphia/view/Produit/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../raphia/view/produit/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
