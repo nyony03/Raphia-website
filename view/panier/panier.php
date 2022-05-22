@@ -11,10 +11,10 @@
 
 <body >
     <nav class="navbar navbar-light navbar-expand-md" style="background: #ebd9d5;">
-        <div class="container-fluid"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><img src="../raphia/view/panier/assets/img/logo.png" style="width: 50px;">
+        <div class="container-fluid"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><img onclick="location.href='index.php?action=readAll'" src="../raphia/view/panier/assets/img/logo.png" style="width: 50px;">
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active" href="#" style="color: rgb(167,91,91);font-weight: bold;font-size: 20px;letter-spacing: 1px;font-family: 'Abhaya Libre', serif;">Raphia</a></li>
+                    <li class="nav-item"><a onclick="location.href='index.php?action=readAll'" class="nav-link active" href="#" style="color: rgb(167,91,91);font-weight: bold;font-size: 20px;letter-spacing: 1px;font-family: 'Abhaya Libre', serif;">Raphia</a></li>
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
 
