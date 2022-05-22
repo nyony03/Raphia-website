@@ -229,6 +229,7 @@ class ModelPanier
             'nomProduit' => $objetsProduit['nomProduit'],
             'prixProduit' => $objetsProduit['prixProduit'],
             'image' => $objetsProduit['image'],
+            'idProduit'=> $idProduit,
         ];
     }
 

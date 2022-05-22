@@ -6,7 +6,7 @@ class ControlleurCommande
 {
     public static function creatCommande(){
         if (!isset($_SESSION['idUser'])){
-            require ('connexionView');
+            require ('view/connexion/connexion.php');
         }
         else{
             ModelCommande::creatCommande();

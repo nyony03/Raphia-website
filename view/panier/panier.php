@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,26 +46,34 @@
     $totalPanier = 0;
     //for each dans le panier de la session pour recuperer les articles
     if(!isset($_SESSION['idUser'])) {
-        foreach ($_SESSION['panier'] as $article) {
 
-            echo'
+        foreach ($_SESSION['panier'] as $ind => $article) {
+           if ($article['qte'] <= 0){
+              unset($_SESSION['panier'][$ind]);
+
+           }
+            else{
+
+                echo '
         <div class="d-flex flex-row flex-shrink-1 justify-content-between" style="padding-bottom: 12px;">
-        <div class="d-flex flex-row flex-shrink-1 align-content-center"> <img src="'.$article["image"].'" style="width: 120px;height: 120px;">
+        <div class="d-flex flex-row flex-shrink-1 align-content-center"> <img src="' . $article["image"] . '" style="width: 120px;height: 120px;">
             <div class="d-flex flex-column flex-shrink-1" style="padding-left: 50px;">
-                <p style="font-size: 18px;font-weight: bold;letter-spacing: 1px;color: rgb(0,0,0);">'.$article['nomProduit'].'&nbsp;</p>
+                <p style="font-size: 18px;font-weight: bold;letter-spacing: 1px;color: rgb(0,0,0);">' . $article['nomProduit'] . '&nbsp;</p>
                 <div class="d-flex flex-row">
                     <p style="font-size: 18px;letter-spacing: 1px;font-style: italic;color: rgb(0,0,0);">Quantité&nbsp; :</p>
-                    <p style="font-size: 18px;letter-spacing: 1px;padding-left: 15px;">'.$article['qte'].'&nbsp;</p>
+                    <p style="font-size: 18px;letter-spacing: 1px;padding-left: 15px;">' . $article['qte'] . '&nbsp;</p>
                 </div>
+                <div class="d-flex flex-row justify-content-evenly"><button onclick="location.href=\'index.php?action=removeQuantitySession&attribut[0]=' . $article['nomProduit'] . '\'" class="btn btn-primary" type="button" style="font-size: 16px;font-weight: bold;background: rgb(211,110,112);border-color: rgb(211,110,112);">-</button><button onclick="location.href=\'index.php?action=addQuantitySession&attribut[0]=' . $article['nomProduit'] . '\'"class="btn btn-primary" type="button" style="font-weight: bold;background: rgb(211,110,112);border-color: rgb(211,110,112);">+</button></div>
             </div>
         </div>';
 
-            $article['total'] = $article['qte'] * $article['prixProduit'];
-            $totalPanier +=  $article['total'] ;
+                $article['total'] = $article['qte'] * $article['prixProduit'];
+                $totalPanier += $article['total'];
 
-            echo' <p class="d-flex flex-shrink-1 justify-content-xl-center" style="padding-right: 20px;font-size: 18px;letter-spacing: 1px;color: rgb(0,0,0);">'.$article['total'].'€ </p>
+                echo ' <p class="d-flex flex-shrink-1 justify-content-xl-center" style="padding-right: 20px;font-size: 18px;letter-spacing: 1px;color: rgb(0,0,0);">' . $article['total'] . '€ </p>
             </div>';
 
+            }
         }
     } else{
 

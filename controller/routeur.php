@@ -41,6 +41,7 @@ else {
             ControlleurCommande::creatCommande();
 
         }
+
     }
     else {
         if ($action=="addQuantity") {
@@ -48,6 +49,12 @@ else {
         }
         if($action=="removeQuantity"){
             ControllerPanier::removeQuantity((int)$attribut[0],(int)$attribut[1]);
+        }
+        if($action == 'addQuantitySession'){
+            ControllerPanier::addQuantitySession($attribut[0]);
+        }
+        if($action == 'removeQuantitySession'){
+            ControllerPanier::removeQuantitySession($attribut[0]);
         }
 
 

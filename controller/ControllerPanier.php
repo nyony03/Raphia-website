@@ -14,10 +14,6 @@ class ControllerPanier
         } else {
             //l'utilisateur est connecté
             if (isset($_SESSION['nom'])) {
-                //require_once File::build_path(array("model","Model.php")); // chargement du modèle
-                //require_once File::build_path(array("model","ModelPanier.php")); // chargement du modèle
-                //sa session contient un panier donc à voir si il est vide
-
 
                 $_SESSION['panier'] = ModelPanier::getAllProduitDansPanierByUser($_SESSION['idUser']);//idUser recuperé à la connexion
 
@@ -53,6 +49,47 @@ class ControllerPanier
     {
         ModelPanier::addInLignePanier($idProduit, $idPanier);
         echo '<body onload="location.href=\'index.php?action=readPanier\'"></body>';
+    }
+
+    public static function addQuantitySession($nomProduit)
+    {
+        $panier = $_SESSION['panier'];
+        $_SESSION['panier'] = [];
+        foreach ($panier as $produit) {
+            $idProd = $produit['idProduit'];
+            $qte = $produit['qte'];
+
+            if ($produit['nomProduit'] == $nomProduit) {
+                $qte += 1;
+                $_SESSION['panier'][$idProd] = $qte;
+
+            } else {
+                $_SESSION['panier'][$idProd] = $qte;
+
+            }
+        }
+        header("LOCATION: index.php?action=readPanier");
+    }
+    public static function removeQuantitySession($nomProduit){
+
+        $panier = $_SESSION['panier'];
+        $_SESSION['panier']= [];
+        foreach ($panier as $produit) {
+            $idProd = $produit['idProduit'];
+            $qte = $produit['qte'];
+
+            if ($produit['nomProduit'] == $nomProduit){
+                $qte -= 1;
+                $_SESSION['panier'][$idProd] = $qte;
+
+            }
+            else{
+                $_SESSION['panier'][$idProd] = $qte;
+
+            }
+        }
+        header("LOCATION: index.php?action=readPanier");
+
     }
 
     public static function removeQuantity($idProduit, $idPanier)
