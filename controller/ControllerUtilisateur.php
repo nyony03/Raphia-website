@@ -31,6 +31,13 @@ class ControllerUtilisateur
     {
         $mail = $_POST['mail'];
         $mdp = $_POST['mdp'];
+        $panier = $_SESSION['panier'];
+        $_SESSION['panier'] = [];
+        foreach ($panier as $produit) {
+            $idProd = $produit['idProduit'];
+            $qte = $produit['qte'];
+            $_SESSION['panier'][$idProd] = $qte;
+        }
         ModelUtilisateur::authentification($mail, $mdp);//appel au modèle pour gerer la BD
         if(isset($_SESSION['idUser'])){
             $_SESSION['idPanier'] = ModelPanier::getIdPanierByIdUser($_SESSION['idUser']);

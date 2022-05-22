@@ -15,7 +15,12 @@
     <div class="container-fluid">
         <div onclick='location.href="index.php?action=readAll"' >
             <picture><img src="../raphia/view/connexion/assets/img/logo.png"  width="50" height="50"></picture><a class="navbar-brand" href="#" style="color: #a75b5b;"><strong><em>Raphia</em></strong></a>
-        </div><button class="btn btn-primary" type="button" style="background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;">Panier</button>
+            <button onclick='location.href="index.php?action=readPanier"' class="btn btn-primary" type="button" style="background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;">Panier</button>
+            <?php
+            if(isset($_SESSION['panier_qte'])){
+                echo '<button class="btn btn-primary ms-2" type="button" style="background: #B22222;color: rgb(255,255,255);border-width: 0px;opacity: 1;">' . $_SESSION['panier_qte'] . '</button>';
+            }
+            ?>
     </div>
 </nav>
 <div></div>

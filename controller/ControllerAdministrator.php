@@ -8,10 +8,7 @@ class ControllerAdministrator
         if(isset($_SESSION['nom']))
         {
             require('view/administrator/adminView.php');  //"redirige" vers la vue detail
-        }else{
-            require('view/connexion/adminError.php');
         }
-
     }
 
     public static function deleteUserByAdmin(){
