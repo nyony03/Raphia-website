@@ -38,20 +38,22 @@
         </div>
         <div style="background: rgba(222,222,222,0.58);border-radius: 25px;padding: 8px;margin-top: 15px;"><input type="text" style="background: rgba(255,255,255,0);border-style: none;padding: 7px 2px;margin-left: 25px;color: rgb(186,156,156);" name="prix" placeholder="Prix"></div>
         <fieldset>
-            <legend>Choose your monster's features:</legend>
+            <legend style="margin-top: 20px; font-size: 15px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);">Choisir la catégorie :</legend>
 
             <div>
-                <input type="checkbox" id="scales" name="scales"
-                       checked>
-                <label for="scales">Scales</label>
+                <input type="checkbox" id="decoration" name="decoration">
+                <label for="decoration">Décoration</label>
             </div>
-
             <div>
-                <input type="checkbox" id="horns" name="horns">
-                <label for="horns">Horns</label>
+                <input type="checkbox" id="Plage" name="Plage">
+                <label for="Plage">Plage</label>
+            </div>
+            <div>
+                <input type="checkbox" id="Mode" name="Mode">
+                <label for="Mode">Mode</label>
             </div>
         </fieldset>
-        <label style="margin-top: 20px;" for="image">Sélectionner une image de produit:</label>
+        <label style="margin-top:20px; font-size: 15px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);"" for="image">Sélectionner une image de produit:</label>
         <input type="file" id="image" name="image" accept="image/png, image/jpeg">
         <div style="margin-top: 50px">
             <input type="submit" value="Créer le produit" style="background: rgba(211,110,112,0.57);border-radius: 25px;padding: 8px;margin-top: 15px;">

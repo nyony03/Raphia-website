@@ -5,16 +5,26 @@ class ControllerAdministrator
 {
     public static function viewAdmin()
     {
-        require('view/administrator/adminView.php');  //"redirige" vers la vue detail
+        if(isset($_SESSION['nom']))
+        {
+            require('view/administrator/adminView.php');  //"redirige" vers la vue detail
+        }else{
+            require('view/connexion/adminError.php');
+        }
+
     }
 
     public static function deleteUserByAdmin(){
         $_SESSION['mailUser'] = $_POST['mail-delete'];
         $idPanier = ModelUtilisateur::getIdPanierByAdmin($_SESSION['mailUser']);
-        ModelUtilisateur::deleteLignePanier($idPanier);
-        ModelUtilisateur::deletePanier($idPanier);
-        ModelUtilisateur::deleteCompteByAdmin($_SESSION['mailUser']);
-        require('view/suppressionCompte/deteleOK.php');
+        if((ModelUtilisateur::getidUserByMail($_SESSION['mailUser'])) !== null)
+        {
+            ModelUtilisateur::deleteLignePanier($idPanier);
+            ModelUtilisateur::deletePanier($idPanier);
+            ModelUtilisateur::deleteCompteByAdmin($_SESSION['mailUser']);
+            require('view/suppressionCompte/deteleOK.php');
+        }
+
     }
 
     public static function creationCompteParAdminView(){
