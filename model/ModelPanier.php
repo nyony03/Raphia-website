@@ -165,20 +165,7 @@ class ModelPanier
             $sql_prepare->execute($values2);
         }
 
-
-        $sql = 'DELETE FROM Raphia_Panier
-                WHERE idPanier =:id_Panier ';
-        $sql_prepare = Model::getPdo()->prepare($sql);
-
-        $values2 = array(
-            "id_Panier" => $idPanier,
-        );
-
-        $sql_prepare->execute($values2);
-
         ModelUtilisateur::createPanierUtilisateur($_SESSION['idUser']);
-
-
     }
 
     public static function getIdPanierByIdUser($idUser)
@@ -235,14 +222,11 @@ class ModelPanier
 
     public static function mergePanierSessionDb()
     {
-        foreach ($_SESSION['panier'] as $produit => $qte) {
-            $sql = "SELECT qte FROM Raphia_lignePanier WHERE idProduit =:idProduit AND idPanier =:idPanier";
-            $requete = Model::getPdo()->prepare($sql);
-            $values = array(
-                "idProduit" => $produit,
-                "idPanier" => $_SESSION['idPanier'],
-            );
-            $requete->execute($values);
+        foreach ($_SESSION['panier'] as $idProduit => $produit) {
+            $requete = Model::getPdo()->prepare("
+                SELECT qte FROM Raphia_lignePanier WHERE idProduit =:idProduit AND idPanier =:idPanier
+            ");
+            $requete->execute(["idProduit" => $produit, "idPanier" => $_SESSION['idPanier']]);
             $requete->setFetchMode(PDO::FETCH_ASSOC);
             $produit_exist = $requete->fetchColumn();
 

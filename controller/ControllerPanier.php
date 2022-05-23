@@ -32,9 +32,9 @@ class ControllerPanier
                 $panier = $_SESSION['panier'];  // ['id' => 'qte', 'id' => 'qte' ...]
                 $panierTraite = [];
 
-                foreach ($panier as $idProduit => $qte) {
+                foreach ($panier as $idProduit => $produit) {
                     $ligneProduit = ModelPanier::getProduitByidProduit($idProduit);
-                    $ligneProduit['qte'] = $qte;
+                    $ligneProduit['qte'] = $produit['qte'];
                     $panierTraite[] = $ligneProduit;
                 }
 

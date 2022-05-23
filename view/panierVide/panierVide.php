@@ -19,7 +19,7 @@
         <div class="container-fluid"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><img onclick='location.href="index.php?action=readAll"' src="../raphia/view/panierVide/assets/img/logo.png" style="width: 50px;">
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active" href="#" style="color: rgb(167,91,91);font-weight: bold;font-size: 20px;letter-spacing: 1px;font-family: 'Abhaya Libre', serif;">Raphia</a></li>
+                    <li class="nav-item"><a class="nav-link active" onclick='location.href="index.php?action=readAll"' style="color: rgb(167,91,91);font-weight: bold;font-size: 20px;letter-spacing: 1px;font-family: 'Abhaya Libre', serif;">Raphia</a></li>
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
                     <?php
@@ -29,7 +29,7 @@
                     }
                     //Utilisateur  connecté
                     else{
-                        echo '</ul><p class="d-flex align-self-center navbar-text" style="color: rgb(167,91,91);letter-spacing: 1px;font-size: 18px; serif;font-weight: bold;margin-left: auto;" contenteditable="true"> Bienvenue ' .$_SESSION['nom'].'</p></ul>';
+                        echo '</ul><p class="d-flex align-self-center navbar-text" style="color: rgb(167,91,91);letter-spacing: 1px;font-size: 18px; serif;font-weight: bold;margin-left: auto;"> Bienvenue ' .$_SESSION['nom'].'</p></ul>';
                     }
                 ?>
             </div>

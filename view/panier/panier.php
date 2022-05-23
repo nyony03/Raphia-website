@@ -26,7 +26,7 @@
                     }
                     //Utilisateur  connexté
                     else{
-                        echo '</ul><p class="d-flex align-self-center navbar-text" style="color: rgb(167,91,91);letter-spacing: 1px;font-size: 18px; serif;font-weight: bold;margin-left: auto;" contenteditable="true"> Bienvenue ' .$_SESSION['nom'].'</p></ul>';
+                        echo '</ul><p class="d-flex align-self-center navbar-text" style="color: rgb(167,91,91);letter-spacing: 1px;font-size: 18px; serif;font-weight: bold;margin-left: auto;"> Bienvenue ' .$_SESSION['nom'].'</p></ul>';
                     }
                     ?>
             </div>

@@ -22,25 +22,6 @@ class ModelProduit
         return $tabProduit;
     }
 
-    public static function getProduitByTag($TagProduit)
-    {
-        $sql = "SELECT * FROM Raphia_Produit WHERE idCategorie=:tag";
-
-        $sql_prep = Model::getPdo()->prepare($sql);
-
-        $produit = array(
-            'tag' => $TagProduit,
-        );
-
-        $sql_prep->execute($produit);
-        $sql_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelProduit');
-        $tab_pdt = $sql_prep->fetchAll();
-
-        if (empty($tab_pdt))
-            return false;
-        return $tab_pdt[0];
-
-    }
 
     public static function createLignePanier($idPanier, $idProduit)
     {
@@ -54,7 +35,7 @@ class ModelProduit
         $sql_prep->execute($values);
     }
 
-    public function ajouterQuantiteProduit($idPanier, $idProduit)
+    public static function ajouterQuantiteProduit($idPanier, $idProduit)
     {
         $sql = "UPDATE Raphia_lignePanier SET qte = qte + 1 WHERE idPanier =:idPanier AND idProduit =:idProduit";
         $sql_prep = Model::getPDO()->prepare($sql);

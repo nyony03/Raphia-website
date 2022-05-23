@@ -20,9 +20,15 @@ class ControllerUtilisateur
     //supprimer compte
     public static function deleteCompte()
     {
+
+        ModelUtilisateur::deleteCommande($_SESSION['idUser']);
+        ModelUtilisateur::deleteLigneCommande($_SESSION['idUser']);
         ModelUtilisateur::deleteLignePanier($_SESSION['idPanier']);
         ModelUtilisateur::deletePanier($_SESSION['idPanier']);
         ModelUtilisateur::deleteCompte($_SESSION['idUser']);
+
+
+
         require('view/suppressionCompte/deteleOK.php');
         session_destroy();
     }
@@ -32,7 +38,6 @@ class ControllerUtilisateur
         $mail = $_POST['mail'];
         $mdp = $_POST['mdp'];
         $panier = $_SESSION['panier'];
-        $_SESSION['panier'] = [];
         foreach ($panier as $produit) {
             $idProd = $produit['idProduit'];
             $qte = $produit['qte'];
@@ -100,18 +105,16 @@ class ControllerUtilisateur
     public static function addProduit()
     {
         if (isset($_SESSION['panier'][$_GET['idProduit']])) {
-            $_SESSION['panier'][$_GET['idProduit']]++;
+            $_SESSION['panier'][$_GET['idProduit']]['qte']++;
         } else {
-            $_SESSION['panier'][$_GET['idProduit']] = 1;
+            $_SESSION['panier'][$_GET['idProduit']]['qte'] = 1;
         }
-
         if (isset($_SESSION['idPanier'])) {  // si connecté synchronisation avec la db
             ControllerProduit::ajoutProduitPanierSession();
         }
-
         $_SESSION['panier_qte'] = 0;
-        foreach ($_SESSION['panier'] as $qte) {
-            $_SESSION['panier_qte'] += $qte;
+        foreach ($_SESSION['panier'] as $produit) {
+            $_SESSION['panier_qte'] += $produit['qte'];
         }
 
         header("Location: ../raphia");

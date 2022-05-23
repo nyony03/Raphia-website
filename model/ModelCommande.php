@@ -12,26 +12,13 @@ class ModelCommande
 
     public static function getCommandNumber(){
         $idUtilisateur = $_SESSION['idUser'];
-        $sql = "SELECT COUNT(idCommande) 
-                FROM Raphia_Commande
-                WHERE idUtilisateur=:id_Utilisateur";
 
-        $sql_prepare = Model::getPdo()->prepare($sql);
-        $values = array(
-            "id_Utilisateur" => $idUtilisateur,
-        );
-
-        $sql_prepare->execute($values);
-
+        $sql_prepare = Model::getPdo()->prepare("SELECT max(idCommande) FROM Raphia_Commande");
+        $sql_prepare->execute(["id_Utilisateur" => $idUtilisateur]);
         $sql_prepare->setFetchMode(PDO::FETCH_CLASS,'ModelPanier');
-        $tabNbCommande = $sql_prepare->fetchcolumn();
-        if(empty($tabNbCommande)){
-            return 1;
-        }
-        else {
+        $idCommandMax = $sql_prepare->fetchcolumn();
 
-            return $tabNbCommande+1;
-        }
+        return $idCommandMax+1;
     }
 
     public static function creatCommande(){
@@ -51,6 +38,12 @@ class ModelCommande
             "date_commande" => $date,
             "montant_total" => $totalCommande,
         );
+        var_dump(array(
+            "id_commande" => $idCommande,
+            "id_utilisateur" => $idUtilisateur,
+            "date_commande" => $date,
+            "montant_total" => $totalCommande,
+        ));
         $sql_prepare->execute($values);
 
     }
@@ -77,7 +70,6 @@ class ModelCommande
                 "id_Utilisateur"=> $idUtilisateur,
             );
             $sql_prepare->execute($values);
-
 
         }
     }

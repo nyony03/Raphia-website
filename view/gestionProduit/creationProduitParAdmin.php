@@ -25,39 +25,41 @@
         <div style="border-radius: 25px;">
             <p style="font-size: 25px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);">Création produit</p>
         </div>
-        <div style="margin-top: 20px;">
-            <p style="font-size: 15px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);">Nom du produit</p>
-        </div>
-        <div style="background: rgba(222,222,222,0.58);border-radius: 25px;padding: 8px;"><input type="text" style="background: rgba(255,255,255,0);border-style: none;padding: 7px 2px;margin-left: 25px;color: rgb(186,156,156);padding-right: 9px;width: 630px;" placeholder="Nom du produit"></div>
-        <div style="margin-top: 20px;">
-            <p style="font-size: 15px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);">Description</p>
-        </div>
-        <div style="background: rgba(222,222,222,0.58);border-radius: 25px;padding: 8px;margin-top: 15px;"><input type="text" style="background: rgba(255,255,255,0);border-style: none;padding: 7px 2px;margin-left: 25px;color: rgb(186,156,156);width: 630px;" name="description" placeholder="description"></div>
-        <div style="margin-top: 20px;">
-            <p style="font-size: 15px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);">Prix</p>
-        </div>
-        <div style="background: rgba(222,222,222,0.58);border-radius: 25px;padding: 8px;margin-top: 15px;"><input type="text" style="background: rgba(255,255,255,0);border-style: none;padding: 7px 2px;margin-left: 25px;color: rgb(186,156,156);" name="prix" placeholder="Prix"></div>
-        <fieldset>
-            <legend style="margin-top: 20px; font-size: 15px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);">Choisir la catégorie :</legend>
+        <form method="post" action="#">
+            <div style="margin-top: 20px;">
+                <p style="font-size: 15px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);">Nom du produit</p>
+            </div>
+            <div style="background: rgba(222,222,222,0.58);border-radius: 25px;padding: 8px;"><input type="text" style="background: rgba(255,255,255,0);border-style: none;padding: 7px 2px;margin-left: 25px;color: rgb(186,156,156);padding-right: 9px;width: 630px;" placeholder="Nom du produit"></div>
+            <div style="margin-top: 20px;">
+                <p style="font-size: 15px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);">Description</p>
+            </div>
+            <div style="background: rgba(222,222,222,0.58);border-radius: 25px;padding: 8px;margin-top: 15px;"><input type="text" style="background: rgba(255,255,255,0);border-style: none;padding: 7px 2px;margin-left: 25px;color: rgb(186,156,156);width: 630px;" name="description" placeholder="description"></div>
+            <div style="margin-top: 20px;">
+                <p style="font-size: 15px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);">Prix</p>
+            </div>
+            <div style="background: rgba(222,222,222,0.58);border-radius: 25px;padding: 8px;margin-top: 15px;"><input type="text" style="background: rgba(255,255,255,0);border-style: none;padding: 7px 2px;margin-left: 25px;color: rgb(186,156,156);" name="prix" placeholder="Prix"></div>
+            <fieldset>
+                <legend style="margin-top: 20px; font-size: 15px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);">Choisir la catégorie :</legend>
+                <div>
+                    <input type="checkbox" id="decoration" name="decoration">
+                    <label for="decoration">Décoration</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="Plage" name="Plage">
+                    <label for="Plage">Plage</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="Mode" name="Mode">
+                    <label for="Mode">Mode</label>
+                </div>
+            </fieldset>
+            <label style="margin-top:20px; font-size: 15px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);"" for="image">Sélectionner une image de produit:</label>
+            <input type="file" id="image" name="image" accept="image/png, image/jpeg">
+            <div style="margin-top: 50px">
+                <input type="submit" value="Créer le produit" style="background: rgba(211,110,112,0.57);border-radius: 25px;padding: 8px;margin-top: 15px;">
+            </div>
+        </form>
 
-            <div>
-                <input type="checkbox" id="decoration" name="decoration">
-                <label for="decoration">Décoration</label>
-            </div>
-            <div>
-                <input type="checkbox" id="Plage" name="Plage">
-                <label for="Plage">Plage</label>
-            </div>
-            <div>
-                <input type="checkbox" id="Mode" name="Mode">
-                <label for="Mode">Mode</label>
-            </div>
-        </fieldset>
-        <label style="margin-top:20px; font-size: 15px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);"" for="image">Sélectionner une image de produit:</label>
-        <input type="file" id="image" name="image" accept="image/png, image/jpeg">
-        <div style="margin-top: 50px">
-            <input type="submit" value="Créer le produit" style="background: rgba(211,110,112,0.57);border-radius: 25px;padding: 8px;margin-top: 15px;">
-        </div>
     </div>
 </div>
 <script src="../raphia/view/gestionProduit/assets/bootstrap/js/bootstrap.min.js"></script>

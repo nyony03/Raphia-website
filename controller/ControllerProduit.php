@@ -21,7 +21,7 @@ class ControllerProduit
 
     public static function ajoutProduitPanierSession()
     {
-        if ($_SESSION['panier'][$_GET['idProduit']] == 1) {
+        if ($_SESSION['panier'][$_GET['idProduit']]['qte'] == 1) {
             ModelProduit::createLignePanier($_SESSION['idPanier'], $_GET['idProduit']);
         } else {
             ModelProduit::ajouterQuantiteProduit($_SESSION['idPanier'],  $_GET['idProduit']);

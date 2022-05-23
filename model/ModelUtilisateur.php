@@ -188,4 +188,21 @@ class ModelUtilisateur
 
     }
 
+    public static function deleteLigneCommande($idUser)
+    {
+        $sql = "DELETE FROM Raphia_LigneCommande WHERE idUser =:idUser";
+        $requete = Model::getPdo()->prepare($sql);
+        $values = array(
+            "idUser" => $idUser,
+        );
+        $requete->execute($values);
+    }
+
+    public static function deleteCommande($idUser)
+    {
+        $requete = Model::getPdo()->prepare("
+            DELETE FROM Raphia_Commande WHERE idUtilisateur =:idUser
+        ");
+        $requete->execute(["idUser" => $idUser]);
+    }
 }

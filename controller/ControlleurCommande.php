@@ -12,6 +12,7 @@ class ControlleurCommande
             ModelCommande::creatCommande();
             ModelCommande::createLignesCommandes();
             ModelPanier::deleteAllPanier();
+            require ('view/connexion/commandeOK.php');
         }
     }
 }
