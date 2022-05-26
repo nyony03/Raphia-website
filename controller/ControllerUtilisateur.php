@@ -37,13 +37,24 @@ class ControllerUtilisateur
     {
         $mail = $_POST['mail'];
         $mdp = $_POST['mdp'];
+        $tabUser = ModelUtilisateur::authentification($mail, $mdp);//appel au modèle pour gerer la BD
+        if(isset($tabUser)){
+            header("Location: ../raphia"); //"redirige" vers la vue
+            $_SESSION['idAdmin'] = ModelUtilisateur::getIdAdminByIdUser($_SESSION['idUser']);
+        }else{
+            require('view/connexion/connexionError.php');
+        }
+
+
+    }
+
+    public static function mergeSession(){
         $panier = $_SESSION['panier'];
         foreach ($panier as $produit) {
             $idProd = $produit['idProduit'];
             $qte = $produit['qte'];
             $_SESSION['panier'][$idProd] = $qte;
         }
-        ModelUtilisateur::authentification($mail, $mdp);//appel au modèle pour gerer la BD
         if(isset($_SESSION['idUser'])){
             $_SESSION['idPanier'] = ModelPanier::getIdPanierByIdUser($_SESSION['idUser']);
 
@@ -59,7 +70,6 @@ class ControllerUtilisateur
                 $_SESSION['panier_qte'] += $qte;
             }
         }
-
     }
 
     public static function creation()
@@ -119,4 +129,5 @@ class ControllerUtilisateur
 
         header("Location: ../raphia");
     }
+
 }

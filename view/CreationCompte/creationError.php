@@ -48,34 +48,23 @@
         ?>
     </div>
 </nav>
-    <div></div>
-    <div class="container flex-shrink-1">
-        <div class="row d-md-flex d-lg-flex flex-shrink-1">
-            <div class="col-md-6 d-flex" style="margin-top:100px; background: url('../raphia/view/formulaireCreationCompte/assets/img/Screenshot_from_2022-05-04_12-59-41-removebg-preview.png') center / contain no-repeat;">
-            </div>
-            <div class="col-md-6">
+<div></div>
+<div class="container flex-shrink-1" style="padding-top: 100px">
+    <div class="row d-md-flex d-lg-flex flex-shrink-1">
+        <div class="col-md-6 d-flex" style="background: url('../raphia/view/formulaireCreationCompte/assets/img/Screenshot_from_2022-05-04_12-59-41-removebg-preview.png') center / contain no-repeat;">
+        </div>
+        <div class="col-md-6">
+            <div>
                 <div>
-                    <form method="post" action="index.php?action=creation">
-                        <div style="padding-top: 30px">
-                            <div style="border-radius: 25px; padding-top: 75px">
-                                <p style="font-size: 25px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);">Création de compte</p>
-                            </div>
-                            <div style="background: rgba(222,222,222,0.58);border-radius: 25px;padding: 8px;margin-top: 15px;"><i class="fas fa-smile-beam" style="margin-left: 15px;font-size: 20px;color: rgb(186,156,156);"></i><input type="text" name="nom" style="background: rgba(255,255,255,0);border-style: none;padding: 7px 2px;margin-left: 25px;color: rgb(186,156,156);" placeholder="Nom"></div>
-                            <div style="background: rgba(222,222,222,0.58);border-radius: 25px;padding: 8px;margin-top: 15px;"><i class="fas fa-smile-beam" style="margin-left: 15px;font-size: 20px;color: rgb(186,156,156);"></i><input type="text" name="prenom" style="background: rgba(255,255,255,0);border-style: none;padding: 7px 2px;margin-left: 25px;color: rgb(186,156,156);" placeholder="Prenom"></div>
-                            <div style="background: rgba(222,222,222,0.58);border-radius: 25px;padding: 8px;margin-top: 15px;"><i class="fas fa-envelope" style="margin-left: 15px;font-size: 20px;color: rgb(186,156,156);"></i><input type="text" name="mail" style="background: rgba(255,255,255,0);border-style: none;padding: 7px 2px;margin-left: 25px;color: rgb(186,156,156);" placeholder="Mail"></div>
-                            <div style="background: rgba(222,222,222,0.58);border-radius: 25px;padding: 8px;margin-top: 15px;"><i class="fas fa-lock" style="margin-left: 15px;font-size: 20px;color: rgb(186,156,156);"></i><input type="password" style="background: rgba(255,255,255,0);border-style: none;padding: 7px 2px;margin-left: 25px;color: rgb(186,156,156);" name="mdp" placeholder="Mot de passe"></div>
-                            <div style="padding-top: 50px;">
-                                <input type="submit" value="Créer un compte" style="background: rgba(211,110,112,0.57);border-radius: 25px;padding: 8px;margin-top: 15px;">
-                            </div>
-                            </input>
-                        </div>
-                    </form>
-
+                    <div style="padding-right: 100px; background: rgba(222,222,222,0.58);border-radius: 25px;padding: 8px;margin-top: 15px;">
+                        <p style="background: rgba(255,255,255,0);border-style: none;padding: 7px 2px;margin-left: 25px;color: rgb(186,156,156);">Vous avez déjà un compte ! Veuillez vous connecté</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="../raphia/view/formulaireCreationCompte/assets/bootstrap/js/bootstrap.min.js"></script>
+</div>
+<script src="../raphia/view/formulaireCreationCompte/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

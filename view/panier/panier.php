@@ -10,28 +10,37 @@
 </head>
 
 <body >
-    <nav class="navbar navbar-light navbar-expand-md" style="background: #ebd9d5;">
-        <div class="container-fluid"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><img onclick="location.href='index.php?action=readAll'" src="../raphia/view/panier/assets/img/logo.png" style="width: 50px;">
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a onclick="location.href='index.php?action=readAll'" class="nav-link active" href="#" style="color: rgb(167,91,91);font-weight: bold;font-size: 20px;letter-spacing: 1px;font-family: 'Abhaya Libre', serif;">Raphia</a></li>
-                    <li class="nav-item"></li>
-                    <li class="nav-item"></li>
-
-                    <?php
-                    //Gestion de l'affichage du boutton connexion ou du nom
-                    //utilisateur non connecté
-                    if(!isset($_SESSION['nom'])) {
-                        echo '</ul><button class="btn btn-primary d-xxl-flex" type="button" style="background: rgb(211,110,112);margin-left: auto; serif;font-weight: bold;font-size: 18px;letter-spacing: 1px;">Connexion</button>';
-                    }
-                    //Utilisateur  connexté
-                    else{
-                        echo '</ul><p class="d-flex align-self-center navbar-text" style="color: rgb(167,91,91);letter-spacing: 1px;font-size: 18px; serif;font-weight: bold;margin-left: auto;"> Bienvenue ' .$_SESSION['nom'].'</p></ul>';
-                    }
-                    ?>
-            </div>
+<nav class="navbar navbar-light navbar-expand-md" style="background: #ebd9d5;">
+    <div class="container-fluid">
+        <div onclick='location.href="index.php?action=readAll"'>
+            <picture><img src="../raphia/view/Produit/assets/img/logo.png" width="50" height="50"></picture>
+            <a class="navbar-brand" href="#" style="color: #a75b5b;"><strong><em>Raphia</em></strong></a>
         </div>
-    </nav>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active d-md-flex justify-content-md-start" href="#"></a></li>
+                <li class="nav-item"></li>
+                <li class="nav-item"></li>
+            </ul>
+
+        </div>
+
+        <?php
+        //Gestion de l'affichage du boutton connexion ou du nom
+        //utilisateur non connecté
+        if(!isset($_SESSION['nom'])) {
+            echo '</ul><button class="btn btn-primary" type="button" style="background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;margin: 10px;" onclick="location.href=\'index.php?action=readConnexion\'">Connexion</button>';
+        }
+        //Utilisateur connecté
+        else{
+            echo '<p class="d-flex align-self-center navbar-text" style="color: rgb(167,91,91);letter-spacing: 1px;font-size: 18px; serif; margin-right:20px; margin-top:15px; font-weight: bold;margin-left: auto;"> Bienvenue ' .$_SESSION['nom'].'</p>';
+            echo '</ul><button class="btn btn-primary" type="button" style="background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;margin: 10px;" onclick="location.href=\'index.php?action=deconnexion\'">Deconnexion</button>';
+            echo '</ul><button class="btn btn-primary" type="button" style="background: #d36e70;color: rgb(255,255,255);border-width: 0px;opacity: 1;margin: 10px;" onclick="location.href=\'index.php?action=modificationView\'">Modifier mon compte</button>';
+
+        }
+        ?>
+    </div>
+</nav>
     <div class="d-flex flex-row flex-shrink-1 justify-content-between" style="padding-bottom: 22px;padding-top: 8px;">
         <div class="d-flex flex-row flex-shrink-1">
             <div class="d-flex flex-column flex-shrink-1" style="padding-left: 98px;">

@@ -8,6 +8,7 @@ class ModelUtilisateur
     private $prenom;
     private $mdp;
     private $mail;
+    private $id_admin;
 
 
     public static function getidUserByMail($mail)
@@ -41,7 +42,7 @@ class ModelUtilisateur
         $req_prep->setFetchMode(PDO::FETCH_ASSOC);
         $tabUser = $req_prep->fetchAll();
         if (count($tabUser) > 0) {
-            echo "Vous avez déjà un compte ! Veuillez vous connecté";
+            require ('view/CreationCompte/creationError.php');
         } else {
             $sql = "INSERT INTO Raphia_utilisateur(nom, prenom, mdp, mail) VALUES (:name, :surname, :mdp, :mail)";
             $requete = Model::getPdo()->prepare($sql);
@@ -67,14 +68,14 @@ class ModelUtilisateur
         $req_prep->execute($value);
         $req_prep->setFetchMode(PDO::FETCH_ASSOC);
         $tabUser = $req_prep->fetchAll();
-        if (count($tabUser) > 0) {
+        if ($tabUser) {
             //Pour récupérer la session
             $_SESSION['nom'] = $tabUser[0]['nom'];
             $_SESSION['mail'] = $tabUser[0]['mail'];
             $_SESSION['idUser'] = $tabUser[0]['idUser'];
-            header("Location: ../raphia"); //"redirige" vers la vue
+            return $tabUser;
         } else {
-            require('view/connexion/connexionError.php');
+           return null;
         }
     }
 
@@ -204,5 +205,22 @@ class ModelUtilisateur
             DELETE FROM Raphia_Commande WHERE idUtilisateur =:idUser
         ");
         $requete->execute(["idUser" => $idUser]);
+    }
+
+    public static function getIdAdminByIdUser($idUser)
+    {
+        $sql = "SELECT id_admin FROM Raphia_utilisateur WHERE idUser =:idUser";
+        $requete = Model::getPdo()->prepare($sql);
+        $values = array(
+            "idUser" => idUser,
+        );
+        $requete->execute($values);
+
+        $requete->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+        $idAdmin= $requete->fetchColumn();
+
+        if (!$idAdmin)
+            return false;
+        return $idAdmin;
     }
 }

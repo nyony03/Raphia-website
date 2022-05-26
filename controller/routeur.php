@@ -20,10 +20,10 @@ if ($action == 'readConnexion' || $action == 'authentification' || $action == 'c
     ControllerUtilisateur::$action();
 }
 
-if (isset($_SESSION['idUser'])) {
-    if ($action == 'viewAdmin' || $action == 'deleteUserByAdmin' || $action == 'creationCompteParAdminView' || $action == 'creationCompteParAdmin' || $action == 'creationProduitParAdmin') {
-        ControllerAdministrator::$action();
-    }
+
+if ($action == 'viewAdmin' || $action == 'deleteUserByAdmin' || $action == 'creationCompteParAdminView' || $action == 'creationCompteParAdmin' || $action == 'creationProduitParAdmin') {
+    ControllerAdministrator::$action();
+
 }
 
 

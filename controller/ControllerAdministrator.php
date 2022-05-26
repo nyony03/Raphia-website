@@ -5,9 +5,10 @@ class ControllerAdministrator
 {
     public static function viewAdmin()
     {
-        if(isset($_SESSION['nom']))
-        {
+        if(isset($_SESSION['idAdmin'])){
             require('view/administrator/adminView.php');  //"redirige" vers la vue detail
+        }else{
+            require ('view/connexion/adminError.php');
         }
     }
 
