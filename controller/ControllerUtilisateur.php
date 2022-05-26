@@ -39,8 +39,10 @@ class ControllerUtilisateur
         $mdp = $_POST['mdp'];
         $tabUser = ModelUtilisateur::authentification($mail, $mdp);//appel au modèle pour gerer la BD
         if(isset($tabUser)){
+            self::mergeSession();
             header("Location: ../raphia"); //"redirige" vers la vue
             $_SESSION['idAdmin'] = ModelUtilisateur::getIdAdminByIdUser($_SESSION['idUser']);
+
         }else{
             require('view/connexion/connexionError.php');
         }
@@ -54,7 +56,9 @@ class ControllerUtilisateur
             $idProd = $produit['idProduit'];
             $qte = $produit['qte'];
             $_SESSION['panier'][$idProd] = $qte;
+            $_SESSION['panier_qte'] = $qte;
         }
+
         if(isset($_SESSION['idUser'])){
             $_SESSION['idPanier'] = ModelPanier::getIdPanierByIdUser($_SESSION['idUser']);
 
@@ -65,7 +69,7 @@ class ControllerUtilisateur
             $panier = ModelPanier::getLignePanierByIdUser($_SESSION['idUser']);
             $_SESSION['panier'] = $panier;
 
-            $_SESSION['panier_qte'] = 0;
+
             foreach ($_SESSION['panier'] as $qte) {
                 $_SESSION['panier_qte'] += $qte;
             }

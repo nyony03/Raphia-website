@@ -22,7 +22,7 @@
 <div></div>
 <div class="container flex-shrink-1" style="margin-top: 30px;">
     <div>
-        <div style="border-radius: 25px;">
+        <div style="margin-top: 40px; border-radius: 25px;">
             <p style="font-size: 25px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);">Création produit</p>
         </div>
         <form method="post" action="#">
@@ -55,7 +55,7 @@
             </fieldset>
             <label style="margin-top:20px; font-size: 15px;font-weight: bold;letter-spacing: 1PX;color: rgba(167,91,91,0.74);"" for="image">Sélectionner une image de produit:</label>
             <input type="file" id="image" name="image" accept="image/png, image/jpeg">
-            <div style="margin-top: 50px">
+            <div>
                 <input type="submit" value="Créer le produit" style="background: rgba(211,110,112,0.57);border-radius: 25px;padding: 8px;margin-top: 15px;">
             </div>
         </form>
